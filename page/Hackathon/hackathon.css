@@ -36,9 +36,8 @@ a {
 
 #about{
     background-color: white;
-    padding: 50px 0 30px 0;
+    padding: 10px 0;
     text-align: left;
-    margin-top: 40px;
 }
 
 .line {
@@ -134,6 +133,12 @@ footer {
 
 .tags-green{
     background-color: limegreen;
+    color: white;
+    padding: 2px;
+}
+
+.tags-red{
+    background-color: red;
     color: white;
     padding: 2px;
 }

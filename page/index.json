@@ -29,11 +29,11 @@
         {
             "title":    "G 客松",
             "name":     "黑客松",
-            "URL":      "page/Hackathon/index.html"
+            "URL":      "page/Hackathon/index.html?data=page/Hackathon/index.json"
         },
         {
-            "title":    "G 创意",
-            "name":     "黑客松",
+            "title":    "G 品",
+            "name":     "项目展",
             "URL":      "page/Hackathon/project.html"
         },
         {
