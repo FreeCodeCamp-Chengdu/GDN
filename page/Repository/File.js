@@ -11,7 +11,7 @@ require(['jquery', 'EasyWebApp'],  function ($, EWA) {
         data.openfile = function (event) {
 
             $.ajax({
-                url:        iWebApp.apiRoot + this.url,
+                url:        new URL(this.url, iWebApp.apiRoot) + '',
                 headers:    {
                     Accept:    'application/vnd.github.v3.html'
                 },

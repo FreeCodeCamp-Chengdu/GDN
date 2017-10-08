@@ -6,7 +6,11 @@ require([
 
     $( document ).ready(function () {
 
-        var iWebApp = $('#PageBox').iWebApp('https://api.github.com/');
+        var iWebApp = $('#PageBox').iWebApp(new URL(
+                'github/',
+                (self.location.hostname === 'localhost')  ?
+                    self.location  :  'https://fcc-cdg.leanapp.cn/'
+            ));
 
     //  JSON 请求预处理
 
@@ -19,15 +23,6 @@ require([
     //  GitHub API 请求处理
 
         iWebApp.on({
-            type:      'request',
-            method:    'GET',
-            src:       '/'
-        },  function (event, AJAX) {
-
-            AJAX.transport.setRequestHeader(
-                'Authorization',  'token 39ff883676bf43c5723e92701487a020ad1abfb2'
-            );
-        }).on({
             type:      'data',
             method:    'GET'
         },  function (event, data) {

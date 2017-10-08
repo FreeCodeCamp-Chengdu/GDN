@@ -8,12 +8,14 @@
 
     <link rel="stylesheet"
           href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.bootcss.com/diff2html/2.3.0/diff2html.min.css" />
     <link rel="stylesheet" href="style/index.css" />
 <!--[if lte IE 9]>
     <script src="//cdn.bootcss.com/html5-history-api/4.2.8/history.min.js"></script>
 <![endif]-->
     <script src="//cdn.bootcss.com/MutationObserver.js/0.3.2/mutationobserver.min.js"></script>
-    <script src="//cdn.bootcss.com/require.js/2.3.3/require.min.js"></script>
+    <script src="//cdn.bootcss.com/require.js/2.3.5/require.min.js"></script>
     <script>
         require.config({
             baseUrl:    'script/',
@@ -68,6 +70,11 @@
                             ${view.title}
                         </a>
                     </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a target="_top" href="./github/oAuth">
+                        GitHub 登录
+                    </a></li>
                 </ul>
             </div>
         </div>
