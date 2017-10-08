@@ -8,3 +8,6 @@ bower_components/*
 .vscode/*
 .DS_Store
 .leancloud/*
+
+# WebStorm IDE
+.idea

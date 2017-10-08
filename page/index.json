@@ -27,6 +27,16 @@
             "URL":      "page/User/index.html?data=organizations"
         },
         {
+            "title":    "G 客松",
+            "name":     "黑客松",
+            "URL":      "page/Hackathon/index.html"
+        },
+        {
+            "title":    "G 创意",
+            "name":     "黑客松",
+            "URL":      "page/Hackathon/project.html"
+        },
+        {
             "title":    "关于本站",
             "URL":      "ReadMe.md"
         },
