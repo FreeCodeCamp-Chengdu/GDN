@@ -3,12 +3,13 @@
 # Example .gitignore files: https://github.com/github/gitignore
 
 .svn/*
-node_modules/*
 bower_components/*
 .vscode/*
 .DS_Store
-.leancloud/*
 
 # WebStorm IDE
 .idea
 package-lock.json
+.leancloud/
+node_modules/
+page/Project/
