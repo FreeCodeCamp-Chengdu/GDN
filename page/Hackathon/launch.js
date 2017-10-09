@@ -42,7 +42,7 @@ require(['jquery', 'EasyWebApp', 'DateRangePicker', 'BootStrap'],  function ($, 
 
             $('[type="hidden"]').val(function (index) {
 
-                return args[ index ].utcOffset(8).toISOString();
+                return args[ index ].utcOffset(8).format('YYYY-MM-DDTHH:mm:ss');
             })
         });
     });
