@@ -1,0 +1,43 @@
+Post /Activity
+{
+    data:activityObj
+}
+
+activityObj = {
+                  "name": "秋季黑客松",
+                  "desc": "这是黑客松",
+                  "banner": "tttt",
+                  "date":"17/10/20",
+                  "start": "09:00",
+                  "end": "18:00",
+                  "reward":[
+                      {
+                          "category":"图书",
+                          "sum":99,
+                          "detail":""
+                      }
+                  ],
+                  "location" :"ttt",
+                  "repos":[]
+              };
+
+Post /repos
+
+{
+    data: reposObj
+}
+
+reposObj =  {
+                "owner": "owner",
+                "name": "name",
+                "desc": "title",
+                "created_at":"",
+                "members": [
+                   {
+                       "name":"user1",
+                       "state": 0
+                   },
+                   ....
+               ]
+               },
+
