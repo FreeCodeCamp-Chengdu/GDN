@@ -4,20 +4,20 @@ Post /Activity
 }
 
 activityObj = {
-                  "name": "秋季黑客松",
-                  "desc": "这是黑客松",
-                  "banner": "tttt",
-                  "date":"17/10/20",
-                  "start": "09:00",
-                  "end": "18:00",
+                  "name": "",
+                  "desc": "",
+                  "banner": "",
+                  "date":"",
+                  "start": "",
+                  "end": "",
                   "reward":[
                       {
-                          "category":"图书",
+                          "category":"",
                           "sum":99,
                           "detail":""
                       }
                   ],
-                  "location" :"ttt",
+                  "location" :"",
               };
 
 Post /repos
@@ -34,7 +34,7 @@ reposObj =  {
                 "created_at":"",
                 "members": [
                    {
-                       "name":"user1",
+                       "name":"",
                        "state": 0
                    },
                    ....

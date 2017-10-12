@@ -30,11 +30,10 @@ router.post('/activity', function (req, res) {
         // 异常处理
         res.send(error.message);
     });
-
 });
 
 
-router.post('/repos/:activityID', function (req, res) {
+router.post('/repos', function (req, res) {
     const Repos = AV.Object.extend('Repos');
     const repos = new Repos();
     repos.set(req.body.data);
@@ -60,7 +59,7 @@ router.get('/repos', function (req, res) {
     });
 });
 
-router.get('/repos/detail', function (req,res) {
+router.get('/repos/detail/:repoID', function (req,res) {
     const repoID = req.param('repoID');
     const repoQuery  = new AV.Query('Repos');
     if (repoID) {
