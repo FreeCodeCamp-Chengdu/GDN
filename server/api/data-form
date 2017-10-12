@@ -18,7 +18,6 @@ activityObj = {
                       }
                   ],
                   "location" :"ttt",
-                  "repos":[]
               };
 
 Post /repos
@@ -28,6 +27,7 @@ Post /repos
 }
 
 reposObj =  {
+                "activityID":"",
                 "owner": "owner",
                 "name": "name",
                 "desc": "title",

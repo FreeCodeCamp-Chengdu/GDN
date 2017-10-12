@@ -8,3 +8,4 @@ bower_components/*
 .vscode/*
 .DS_Store
 .leancloud/*
+.idea/*
