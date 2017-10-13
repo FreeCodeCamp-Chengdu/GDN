@@ -2,7 +2,7 @@ require(['jquery', 'EasyWebApp', 'DateRangePicker', 'BootStrap'],  function ($, 
 
     EWA.component(function (data) {
 
-        $('#date').daterangepicker({
+        $('#date_select').daterangepicker({
             "timePicker": true,
             "timePicker24Hour": true,
             "locale": {

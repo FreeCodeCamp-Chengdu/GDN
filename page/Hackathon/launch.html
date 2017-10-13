@@ -2,25 +2,24 @@
 
 <form class="form-horizontal">
     <div class="form-group">
-        <label class="col-md-2 control-label" for="title">G客松名字</label>
-        <div class="col-md-10">
-            <input type="text" class="form-control" id="title" placeholder="为你的G客松想个酷炫的名字吧">
+        <div class="input-group col-md-offset-2 col-md-8 col-md-offset-2">
+            <label class="input-group-addon" id="title">名字</label>
+            <input type="text" class="form-control" placeholder="为你的G客松想个酷炫的名字吧" aria-describedby="title">
         </div>
     </div>
     <div class="form-group">
-        <label class="col-md-2 control-label" for="location">地址</label>
-        <div class="col-md-10">
-            <input type="text" class="form-control" id="location" placeholder="准备在哪里举行呢？">
+        <div class="input-group col-md-offset-2 col-md-8 col-md-offset-2">
+            <label class="input-group-addon" id="location">地址</label>
+            <input type="text" class="form-control" placeholder="准备在哪里举行呢?" aria-describedby="location">
         </div>
     </div>
     <div class="form-group">
-        <label class="col-md-2 control-label" for="date">举办时间</label>
-        <div class="col-md-5">
-            <input type="text" id="date">
+        <div class="input-group col-md-offset-2 col-md-8 col-md-offset-2">
+            <label class="input-group-addon" id="date">时间</label>
+            <input type="text" class="form-control" id="date_select" aria-describedby="date">
+            <input type="hidden" name="start">
+            <input type="hidden" name="end">
         </div>
-        <input type="hidden" name="start">
-        <input type="hidden" name="end">
-        <p class="help-block">Example block-level help text here.</p>
     </div>
     <div class="checkbox">
         <label>
