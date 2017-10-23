@@ -1,5 +1,5 @@
- <link rel="stylesheet" href="hackathon.css">
- <script src="index.js"></script>
+<link rel="stylesheet" href="hackathon.css">
+<script src="index.js"></script>
 <div id="app">
     <section id="about">
         <div class="container">
@@ -20,9 +20,12 @@
                 <img src="image/vuejs.jpg" id="upcoming-event-img" class="col-md-4 img-responsive" alt="Upcoming Image">
                 <div class="col-md-4">
                     <h3>${view.title}</h3>
-                    <div><i class="glyphicon glyphicon-calendar event-icon"></i><span class="event-details">${view.date}</span></div>
-                    <div><i class="glyphicon glyphicon-map-marker event-icon"></i><span class="event-details address-text">${view.location}</span></div>
-                    <div><i class="glyphicon glyphicon-tags event-icon"></i><span class="tags event-details">面向${view.target}</span></div>
+                    <div><i class="glyphicon glyphicon-calendar event-icon"></i><span
+                        class="event-details">${view.date}</span></div>
+                    <div><i class="glyphicon glyphicon-map-marker event-icon"></i><span
+                        class="event-details address-text">${view.location}</span></div>
+                    <div><i class="glyphicon glyphicon-tags event-icon"></i><span class="tags event-details">面向${view.target}</span>
+                    </div>
                     <br>
                     <button class="btn btn-default btn-larger">马上报名加入</button>
                     <hr>
@@ -31,14 +34,20 @@
                     <div class="event-details-right"><span>奖品</span><span class="pull-right">${view.loot}</span></div>
                     <br>
                     <div class="col-sm-6 details-left">
-                        <div class="event-details-right"><span>消费</span><span class="pull-right tags-${view.cost ? 'red':'green'}">${view.cost ? '收费':'免费'}</span></div>
-                        <div class="event-details-right"><span>持续时间</span><span class="pull-right tags">${view.time}小时</span></div>
-                        <div class="event-details-right"><span>人数</span><span class="pull-right tags">~${view.member_limit}</span></div>
+                        <div class="event-details-right"><span>消费</span><span
+                            class="pull-right tags-${view.cost ? 'red':'green'}">${view.cost ? '收费':'免费'}</span></div>
+                        <div class="event-details-right"><span>持续时间</span><span
+                            class="pull-right tags">${view.time}小时</span></div>
+                        <div class="event-details-right"><span>人数</span><span class="pull-right tags">~${view.member_limit}</span>
+                        </div>
                     </div>
                     <div class="col-sm-6 details-right">
-                        <div class="event-details-right"><span>赞助商</span><i class="glyphicon glyphicon-${view.sponsor ? 'ok':'remove'} pull-right"></i></div>
-                        <div class="event-details-right"><span>导师</span><i class="glyphicon glyphicon-ok pull-right"></i></div>
-                        <div class="event-details-right"><span>远程参赛</span><i class="glyphicon glyphicon-remove pull-right"></i></div>
+                        <div class="event-details-right"><span>赞助商</span><i
+                            class="glyphicon glyphicon-${view.sponsor ? 'ok':'remove'} pull-right"></i></div>
+                        <div class="event-details-right"><span>导师</span><i
+                            class="glyphicon glyphicon-ok pull-right"></i></div>
+                        <div class="event-details-right"><span>远程参赛</span><i
+                            class="glyphicon glyphicon-remove pull-right"></i></div>
                     </div>
                 </div>
             </div>
@@ -69,14 +78,16 @@
                             </div>
 
                             <div class="dropdown">
-                                <button class="btn btn-default btn-larger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <button class="btn btn-default btn-larger dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="true">
                                     添加到日历
                                     <span class="caret"></span>
                                 </button>
                             </div>
                             <hr>
                             <div id="upcoming_event-details-right">
-                                <div class="event-details-right"><span>奖品</span><span class="pull-right">${view.loot}</span></div>
+                                <div class="event-details-right"><span>奖品</span><span
+                                    class="pull-right">${view.loot}</span></div>
                                 <br>
                                 <div class="col-sm-6 details-left">
                                     <div class="event-details-right">
@@ -85,16 +96,20 @@
                                             ${view.cost ? "收费":"免费"}
                                         </span>
                                     </div>
-                                    <div class="event-details-right"><span>持续时间</span><span class="pull-right tags">${view.time}小时</span></div>
-                                    <div class="event-details-right"><span>人数</span><span class="pull-right tags">~${view.member_limit}</span></div>
+                                    <div class="event-details-right"><span>持续时间</span><span class="pull-right tags">${view.time}小时</span>
+                                    </div>
+                                    <div class="event-details-right"><span>人数</span><span class="pull-right tags">~${view.member_limit}</span>
+                                    </div>
                                 </div>
                                 <div class="col-sm-6 details-right">
                                     <div class="event-details-right">
                                         <span>赞助商</span>
                                         <i class="glyphicon glyphicon-${view.sponsor ? 'ok':'remove'} pull-right"></i>
                                     </div>
-                                    <div class="event-details-right"><span>导师</span><i class="glyphicon glyphicon-ok pull-right"></i></div>
-                                    <div class="event-details-right"><span>远程参赛</span><i class="glyphicon glyphicon-remove pull-right"></i></div>
+                                    <div class="event-details-right"><span>导师</span><i
+                                        class="glyphicon glyphicon-ok pull-right"></i></div>
+                                    <div class="event-details-right"><span>远程参赛</span><i
+                                        class="glyphicon glyphicon-remove pull-right"></i></div>
                                 </div>
                             </div>
                         </div>
@@ -128,30 +143,37 @@
                             </div>
 
                             <div class="dropdown">
-                                <button class="btn btn-default btn-larger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <button class="btn btn-default btn-larger dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="true">
                                     添加到日历
                                     <span class="caret"></span>
                                 </button>
                             </div>
                             <hr>
 
-                                <div class="event-details-right"><span>奖品</span><span class="pull-right">${view.loot}</span></div>
-                                <br>
-                                <div class="col-sm-6 details-left">
-                                    <div class="event-details-right">
-                                        <span>消费</span>
-                                        <span class="pull-right tags-${view.cost ? 'red':'green'}">
+                            <div class="event-details-right"><span>奖品</span><span class="pull-right">${view.loot}</span>
+                            </div>
+                            <br>
+                            <div class="col-sm-6 details-left">
+                                <div class="event-details-right">
+                                    <span>消费</span>
+                                    <span class="pull-right tags-${view.cost ? 'red':'green'}">
                                             ${view.cost ? "收费":"免费"}
                                         </span>
-                                    </div>
-                                    <div class="event-details-right"><span>持续时间</span><span class="pull-right tags">${view.time}小时</span></div>
-                                    <div class="event-details-right"><span>人数</span><span class="pull-right tags">~${view.member_limit}</span></div>
                                 </div>
-                                <div class="col-sm-6 details-right">
-                                    <div class="event-details-right"><span>赞助商</span><i class="glyphicon glyphicon-${view.sponsor ? 'ok':'remove'} pull-right"></i></div>
-                                    <div class="event-details-right"><span>导师</span><i class="glyphicon glyphicon-ok pull-right"></i></div>
-                                    <div class="event-details-right"><span>远程参赛</span><i class="glyphicon glyphicon-remove pull-right"></i></div>
+                                <div class="event-details-right"><span>持续时间</span><span class="pull-right tags">${view.time}小时</span>
                                 </div>
+                                <div class="event-details-right"><span>人数</span><span class="pull-right tags">~${view.member_limit}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 details-right">
+                                <div class="event-details-right"><span>赞助商</span><i
+                                    class="glyphicon glyphicon-${view.sponsor ? 'ok':'remove'} pull-right"></i></div>
+                                <div class="event-details-right"><span>导师</span><i
+                                    class="glyphicon glyphicon-ok pull-right"></i></div>
+                                <div class="event-details-right"><span>远程参赛</span><i
+                                    class="glyphicon glyphicon-remove pull-right"></i></div>
+                            </div>
 
                         </div>
                     </div>

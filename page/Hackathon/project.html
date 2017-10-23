@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="hackathon.css">
 <script>
-    require(['jquery', 'EasyWebApp', 'ScrollReveal', 'BootStrap'],  function ($, EWA, ScrollReveal) {
+    require(['jquery', 'EasyWebApp', 'ScrollReveal', 'BootStrap'], function ($, EWA, ScrollReveal) {
 
         EWA.component(function () {
 
             var sr = ScrollReveal();
 
-            this.on('ready',  function () {
+            this.on('ready', function () {
                 sr.reveal('.product', {
                     duration: 2000,
                     origin: 'right',
@@ -23,14 +23,17 @@
         <h3 class="title"><i class="glyphicon glyphicon-star-o"></i>优秀项目展</h3>
         <hr class="hr">
         <div class="row">
-            <div  v-for="products in 2" class="row">
+            <div v-for="products in 2" class="row">
                 <div v-for="product in 2" class="col-sm-6">
                     <div class="col-sm-12 product">
                         <img src="image/temp_img.png" class="img-responsive event-img">
                         <h3>文本编辑器</h3>
-                        <div><i class="glyphicon glyphicon-calendar event-icon"></i><span class="product-details-date">2017-4-22</span></div>
-                        <div><i class="glyphicon glyphicon-user event-icon users"></i><span class="product-details-group group-text">咸鱼小组</span></div>
-                        <div><i class="glyphicon glyphicon-tags event-icon"></i><span class="tags-blue product-details-tag">富文本编辑，云同步，自动补全</span></div>
+                        <div><i class="glyphicon glyphicon-calendar event-icon"></i><span class="product-details-date">2017-4-22</span>
+                        </div>
+                        <div><i class="glyphicon glyphicon-user event-icon users"></i><span
+                            class="product-details-group group-text">咸鱼小组</span></div>
+                        <div><i class="glyphicon glyphicon-tags event-icon"></i><span
+                            class="tags-blue product-details-tag">富文本编辑，云同步，自动补全</span></div>
                         <button class="btn btn-success btn-larger product-details-button">
                             查看详情
                         </button>
