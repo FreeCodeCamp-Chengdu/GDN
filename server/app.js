@@ -9,6 +9,21 @@ const app = Express();
 
 /* ---------- Express 中间件 ---------- */
 
+//  HTTP 基础中间件
+
+app.get('/server/*',  function () {
+
+    arguments[1].status(404).end();
+});
+
+app.use( Express.static('./') );
+
+app.use( require('cookie-parser')() );
+
+app.use( bodyParser.json() );
+
+app.use( bodyParser.urlencoded({ extended: false }) );
+
 //  LeanCloud 云引擎中间件
 
 app.use( require('connect-timeout')('15s') );
@@ -24,21 +39,6 @@ app.use(LeanCloud.Cloud.CookieSession({
     maxAge:       3600000,
     fetchUser:    true
 }));
-
-//  HTTP 基础中间件
-
-app.use( Express.static('./') );
-
-app.use( require('cookie-parser')() );
-
-app.use(require('cookie-session')({
-    secret:    process.env.GITHUB_APP_SECRET,
-    maxAge:    3600000
-}));
-
-app.use( bodyParser.json() );
-
-app.use( bodyParser.urlencoded({ extended: false }) );
 
 //  GitHub API 代理
 
@@ -64,13 +64,35 @@ app.use('/github', require('cors')({
     {
         setSession:    function (request, response, data) {
 
-            Object.assign(request.session, data);
+            return LeanCloud.User.signUpOrlogInWithAuthData(
+                {
+                    uid:             data.id + '',
+                    access_token:    data.AccessToken,
+                    expires_in:      Math.ceil(Date.now() / 1000 + 60 * 5)
+                },
+                'github'
+            ).then(function (user) {
+
+                response.saveCurrentUser( user );
+
+                return  user.save({data: data},  {user: user});
+
+            }).then(function () {
+
+                response.cookie('userID', data.login);
+
+                response.cookie('userName', data.name);
+
+                return data;
+            });
         },
         getSession:    function (request, response) {
 
-            return request.session;
+            return  request.currentUser ? request.currentUser.get('data') : { };
         },
-        successURL:    '/'
+        successURL:    '/#!' + Buffer.from(
+            'page/User/detail.html?data=user'
+        ).toString('base64')
     }
 ));
 

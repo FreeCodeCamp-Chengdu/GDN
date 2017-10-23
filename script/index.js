@@ -1,10 +1,35 @@
 require([
-    'jquery', 'EasyWebApp', 'FixData', 'marked', 'BootStrap'
-],  function ($, EWA, FixData, marked) {
+    'jquery', 'Layer', 'FixData', 'marked', 'EasyWebApp', 'BootStrap'
+],  function ($, Layer, FixData, marked) {
 
-//  应用程序入口
+    $( document ).on('ajaxError',  function (_, XHR) {
 
-    $( document ).ready(function () {
+    //  AJAX 异常处理
+
+        var message = XHR.responseText;
+
+        switch ( message[0] ) {
+            case '{':    message = JSON.parse( message ).message;    break;
+            case '<':    message = $.parseXML( message );
+        }
+
+        if (XHR.status === 401)
+            Layer.alert('会话失效，请重新登录！',  function () {
+
+                self.location.href = './';
+            });
+        else
+            Layer.alert(
+                $.isPlainObject( message )  ?
+                    JSON.stringify( message )  :  message,
+                function () {
+
+                    $( document ).trigger('ajaxSuccess');
+
+                    Layer.close( arguments[0] );
+                }
+            );
+    }).ready(function () {
 
         var iWebApp = $('#PageBox').iWebApp(new URL(
                 'github/',
@@ -27,7 +52,7 @@ require([
             method:    'GET'
         },  function (event, data) {
 
-            return  FixData.call(this.apiRoot, data);
+            return  FixData.call('https://api.github.com/', data);
         }).on({
             type:      'data',
             method:    'GET',
@@ -65,6 +90,16 @@ require([
 
             $( $_Link[0].parentNode ).addClass('active')
                 .siblings().removeClass('active');
+        }).on({
+            type:      'ready',
+            target:    iWebApp.$_View[0]
+        },  function () {
+
+            var cookie = $.paramJSON(
+                    '?'  +  document.cookie.replace(/;\s*/g, '&')
+                );
+
+            if ( cookie.userID )  $('html').view().render( cookie );
         });
 
     //  搜索框

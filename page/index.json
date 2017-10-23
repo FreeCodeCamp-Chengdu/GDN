@@ -42,7 +42,7 @@
         },
         {
             "title":    "关于作者",
-            "URL":      "page/User/detail.html?data=users/TechQuery"
+            "URL":      "page/User/detail.html?data=orgs/FreeCodeCamp-Chengdu"
         }
     ]
 }
