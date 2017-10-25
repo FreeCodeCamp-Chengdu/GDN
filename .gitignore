@@ -6,7 +6,6 @@
 bower_components/*
 .vscode/*
 .DS_Store
-
 # WebStorm IDE
 .idea
 package-lock.json

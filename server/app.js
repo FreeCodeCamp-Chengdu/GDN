@@ -98,7 +98,7 @@ app.use('/github', require('cors')({
 
 
 /* ---------- RESTful API 路由 ---------- */
-
+app.use('/hackathon', require('./api/hackathon'));
 
 
 

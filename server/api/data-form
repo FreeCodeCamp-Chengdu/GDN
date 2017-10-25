@@ -1,0 +1,43 @@
+Post /Activity
+{
+    data:activityObj
+}
+
+activityObj = {
+                  "name": "",
+                  "desc": "",
+                  "banner": "",
+                  "date":"",
+                  "start": "",
+                  "end": "",
+                  "reward":[
+                      {
+                          "category":"",
+                          "sum":99,
+                          "detail":""
+                      }
+                  ],
+                  "location" :"",
+              };
+
+Post /repos
+
+{
+    data: reposObj
+}
+
+reposObj =  {
+                "activityID":"",
+                "owner": "owner",
+                "name": "name",
+                "desc": "title",
+                "created_at":"",
+                "members": [
+                   {
+                       "name":"",
+                       "state": 0
+                   },
+                   ....
+               ]
+               },
+
