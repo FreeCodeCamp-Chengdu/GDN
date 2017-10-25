@@ -19,16 +19,16 @@ app.use(function(error, request, response) {
     if (request.timedout  &&  (request.headers.upgrade === 'websocket'))
         return;
 
-    error.status = error.status || 500;
+    error.code = error.code || error.status || 500;
 
-    if (error.status === 500)  console.error(error.stack || error);
+    if (error.code === 500)  console.error(error.stack || error);
 
     if ( request.timedout )
         console.error(
             `请求超时: url=${request.originalUrl}, timeout=${error.timeout}, 请确认方法执行耗时很长，或没有正确的 response 回调。`
         );
 
-    response.status( error.status );
+    response.status( error.code );
 
     //  若非开发环境，须隐藏 异常堆栈信息
     error = Object.assign({ }, error);

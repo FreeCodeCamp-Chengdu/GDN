@@ -4,7 +4,7 @@
         {
             "title":    "G 流",
             "name":     "事件流",
-            "URL":      "page/Event.html?data=events"
+            "URL":      "page/Event.html?data=github/events"
         },
         {
             "title":    "G 仓",
@@ -19,12 +19,12 @@
         {
             "title":    "G 友",
             "name":     "程序员",
-            "URL":      "page/User/index.html?data=users"
+            "URL":      "page/User/index.html?data=github/users"
         },
         {
             "title":    "G 团",
             "name":     "开发团队",
-            "URL":      "page/User/index.html?data=organizations"
+            "URL":      "page/User/index.html?data=github/organizations"
         },
         {
             "title":    "G 客松",
@@ -37,12 +37,18 @@
             "URL":      "page/Hackathon/project.html"
         },
         {
+            "title":    "G 调",
+            "name":     "行业调查",
+            "URL":      "page/Survey/index.html"
+        },
+        {
             "title":    "关于本站",
             "URL":      "ReadMe.md"
         },
         {
             "title":    "关于作者",
-            "URL":      "page/User/detail.html?data=orgs/FreeCodeCamp-Chengdu"
+            "URL":      "page/User/detail.html?data=github/orgs/FreeCodeCamp-Chengdu"
         }
-    ]
+    ],
+    "userID":     ""
 }

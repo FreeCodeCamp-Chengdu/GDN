@@ -1,0 +1,70 @@
+<style disabled>
+    form {
+        counter-reset:    index;
+    }
+    form > section {
+        margin:     1em;
+        border:     2px  dashed  lightgray;
+        padding:    1em;
+    }
+    form legend:before {
+        counter-increment:    index;
+        content:              counter( index )'. ';
+    }
+    aside button {
+        margin:    0.25em;
+    }
+</style>
+<script src="editor.js"></script>
+
+<div class="row">
+    <div class="col-md-10" data-url="/survey/form/${view.fid}">
+
+        <h2 contenteditable="true" data-form="title">问卷标题</h2>
+
+        <p contenteditable="true" data-form="description">问卷描述</p>
+
+        <form onsubmit="return false" is="ListView" data-name="questions">
+
+            <section data-url="/survey/form/${scope.fid}/question/${view.qid}">
+                <fieldset>
+                    <legend contenteditable="true" data-form="title">
+                        <!--${view.multiple ? '多选' : '单选'}-->问题
+                    </legend>
+                    <p contenteditable="true" data-form="description">
+                        <!--${view.multiple ? '多选' : '单选'}-->描述
+                    </p>
+
+                    <button class="btn btn-primary pull-right"
+                            onclick="${scope.addOption}">
+                        添加选项
+                    </button>
+
+                    <div is="ListView" data-name="options">
+                        <span data-url="/survey/question/${scope.qid}/option/${view.oid}">
+
+                            <input type="${scope.multiple ? 'checkbox' : 'radio'}"
+                                   disabled />
+                            <label contenteditable="true" data-form="title">
+                                <!--${scope.multiple ? '多选' : '单选'}-->选项
+                            </label>
+                        </span>
+                    </div>
+                </fieldset>
+            </section>
+        </form>
+    </div>
+    <aside class="col-md-2">
+        <button class="btn btn-primary"
+                onclick="${view.addQuestion.bind(view, 0)}">
+            + 单选题
+        </button>
+        <button class="btn btn-primary"
+                onclick="${view.addQuestion.bind(view, 1)}">
+            + 多选题
+        </button>
+        <button class="btn btn-primary" onclick="${view.finish}">
+            完成编辑
+        </button>
+    </aside>
+</div>

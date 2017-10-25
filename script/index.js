@@ -31,11 +31,10 @@ require([
             );
     }).ready(function () {
 
-        var iWebApp = $('#PageBox').iWebApp(new URL(
-                'github/',
+        var iWebApp = $('#PageBox').iWebApp(
                 (self.location.hostname === 'localhost')  ?
                     self.location  :  'https://fcc-cdg.leanapp.cn/'
-            ));
+            );
 
     //  JSON 请求预处理
 
@@ -52,7 +51,7 @@ require([
             method:    'GET'
         },  function (event, data) {
 
-            return  FixData.call('https://api.github.com/', data);
+            return  FixData( data );
         }).on({
             type:      'data',
             method:    'GET',
@@ -110,8 +109,8 @@ require([
 
             iWebApp.loadPage(
                 (keyword.indexOf('/') < 0)  ?
-                    ('page/User/detail.html?data=users/' + keyword)  :
-                    ('page/Repository/detail.html?data=repos/' + keyword)
+                    ('page/User/detail.html?data=github/users/' + keyword)  :
+                    ('page/Repository/detail.html?data=github/repos/' + keyword)
             );
 
             return false;

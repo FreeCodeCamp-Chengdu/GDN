@@ -41,6 +41,11 @@ body {
 body > nav .navbar-brand {
     color:    white  !important;
 }
+.navbar-nav[data-name] {
+	max-width:     32em;
+    max-height:    3.5em;
+    overflow:      auto;
+}
 #PageBox {
     padding:    1em;
 }

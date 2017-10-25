@@ -36,10 +36,10 @@
         <p>${view.bio || view.description}</p>
         <p>${view.createdTime} 加入 G 圈，${view.updatedTime} 更新了资料</p>
         <p>
-            <a href="index.html?data=users/${view.login}/followers">
+            <a href="index.html?data=github/users/${view.login}/followers">
                 粉丝 ${view.followers} 人
             </a>
-            <a href="index.html?data=users/${view.login}/following">
+            <a href="index.html?data=github/users/${view.login}/following">
                 偶像 ${view.following} 人
             </a>
         </p>
@@ -68,7 +68,7 @@
 
             <span is="ListView" data-href="?data=${view.memberURL}">
 
-                <a href="../User/detail.html?data=${scope.detailURL( view )}"
+                <a href="../User/detail.html?data=github/${scope.detailURL( view )}"
                    title="${view.login}">
 
                     <img class="img-thumbnail" src="${view.avatar_url}" />

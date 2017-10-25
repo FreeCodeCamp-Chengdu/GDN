@@ -1,0 +1,40 @@
+<style disabled>
+    form {
+        counter-reset:    index;
+    }
+    form > section {
+        margin:     1em;
+        border:     2px  dashed  lightgray;
+        padding:    1em;
+    }
+    form legend:before {
+        counter-increment:    index;
+        content:              counter( index )'. ';
+    }
+</style>
+
+
+<h2><!--${view.title}--></h2>
+
+<p><!--${view.description}--></p>
+
+<form onsubmit="return false" is="ListView" data-name="questions">
+
+    <section data-url="/survey/form/${scope.fid}/question">
+        <fieldset>
+            <legend><!--${view.title}--></legend>
+
+            <p><!--${view.description}--></p>
+
+            <div is="ListView" data-name="options">
+                <span data-url="/survey/question/${scope.qid}/option">
+
+                    <input type="${scope.multiple ? 'checkbox' : 'radio'}"
+                           id="${view.objectId}" />
+
+                    <label for="${view.objectId}"><!--${scope.title}--></label>
+                </span>
+            </div>
+        </fieldset>
+    </section>
+</form>
