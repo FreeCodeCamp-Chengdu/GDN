@@ -20,7 +20,9 @@ define(['jquery', 'EasyWebApp'],  function ($, EWA) {
 
             VM.on('ready',  function (event) {
 
-                set_State(this,  next = (event.header.link.next || '').uri);
+                var link = event.header.link || '';
+
+                set_State(this,  next = (link.next || '').uri);
             });
 
             data = (data instanceof Array)  ?  {list: data}  :  data;

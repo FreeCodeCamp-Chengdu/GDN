@@ -9,7 +9,9 @@
     <link rel="stylesheet"
           href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet"
-          href="https://cdn.bootcss.com/diff2html/2.3.0/diff2html.min.css" />
+          href="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" />
     <link rel="stylesheet" href="style/index.css" />
 <!--[if lte IE 9]>
     <script src="//cdn.bootcss.com/html5-history-api_url/4.2.8/history.min.js"></script>
@@ -20,10 +22,20 @@
         require.config({
             baseUrl:    'script/',
             paths:      {
-                jquery:        'https://cdn.bootcss.com/jquery/3.2.1/jquery.min',
+                jquery:
+                    'https://cdn.bootcss.com/jquery/3.2.1/jquery.min',
                 BootStrap:
                     'https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min',
-                marked:        'https://cdn.bootcss.com/marked/0.3.6/marked.min',
+                moment:
+                    'https://cdn.bootcss.com/moment.js/2.18.1/moment.min',
+                DateRangePicker:
+                    'https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min',
+                marked:
+                    'https://cdn.bootcss.com/marked/0.3.6/marked.min',
+                Layer:
+                    'https://cdn.bootcss.com/layer/3.0.3/layer.min',
+                ScrollReveal:
+                    'https://cdn.bootcss.com/scrollReveal.js/3.3.5/scrollreveal.min',
                 Media_Flow:    '../page/Media_Flow'
             },
             shim:       {
@@ -47,7 +59,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" target="_top" href="" title="返回首页">
-                    ${view.title}
+                    <!--${view.title}-->
                 </a>
             </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,14 +79,26 @@
                         <a target="${view.target}" href="${view.URL}"
                            data-autofocus="${! view.__index__}"
                            title="${view.name}">
-                            ${view.title}
+                            <!--${view.title}-->
                         </a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a target="_top" href="./github/oAuth">
-                        GitHub 登录
-                    </a></li>
+
+                    <li style="display: ${view.userID ? 'none' : ''}">
+
+                        <a target="_top" href="./github/oAuth">
+                            GitHub 登录
+                        </a>
+                    </li>
+                    <li style="display: ${view.userID ? '' : 'none'}">
+
+                        <a href="page/User/detail.html?data=users/${view.userID}">
+
+                            <i class="glyphicon glyphicon-user"></i>
+                            <!--${view.userName}-->
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

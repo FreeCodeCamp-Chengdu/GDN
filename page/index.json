@@ -27,12 +27,22 @@
             "URL":      "page/User/index.html?data=organizations"
         },
         {
+            "title":    "G 客松",
+            "name":     "黑客松",
+            "URL":      "page/Hackathon/index.html?data=page/Hackathon/index.json"
+        },
+        {
+            "title":    "G 品",
+            "name":     "项目展",
+            "URL":      "page/Hackathon/project.html"
+        },
+        {
             "title":    "关于本站",
             "URL":      "ReadMe.md"
         },
         {
             "title":    "关于作者",
-            "URL":      "page/User/detail.html?data=users/TechQuery"
+            "URL":      "page/User/detail.html?data=orgs/FreeCodeCamp-Chengdu"
         }
     ]
 }
