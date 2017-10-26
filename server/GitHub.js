@@ -1,26 +1,12 @@
 'use strict';
 
 const router = require('express').Router(),
-      CORS = require('cors'),
       GitHub = require('express-github'),
       LeanCloud = require('leanengine');
 
 
 
-router.use('/github', CORS({
-    origin:                  function (origin, callback) {
-        if (
-            (! origin)  ||
-            (origin.indexOf('//localhost') > -1)  ||
-            (origin.indexOf( process.env.WEB_DOMAIN )  >  -1)
-        )
-            callback(null, true);
-        else
-            callback(new Error('Not allowed by CORS'));
-    },
-    credentials:             true,
-    optionsSuccessStatus:    200
-}), GitHub(
+router.use('/github', GitHub(
     {
         AppID:        process.env.GITHUB_APP_ID,
         AppSecret:    process.env.GITHUB_APP_SECRET,
@@ -29,34 +15,31 @@ router.use('/github', CORS({
     {
         setSession:    function (request, response, data) {
 
+        //  https://forum.leancloud.cn/t/bug-github-oauth/16180/10
+
             return LeanCloud.User.signUpOrlogInWithAuthData(
                 {
                     uid:             data.id + '',
-                    access_token:    data.AccessToken,
-                    expires_in:      Math.ceil(Date.now() / 1000 + 60 * 5)
+                    access_token:    data.AccessToken
                 },
                 'github'
             ).then(function (user) {
 
                 response.saveCurrentUser( user );
 
-                return  user.save({data: data},  {user: user});
+                return  user.save({github: data},  {user: user});
 
             }).then(function () {
-
-                response.cookie('userID', data.login);
-
-                response.cookie('userName', data.name);
 
                 return data;
             });
         },
         getSession:    function (request, response) {
 
-            return  request.currentUser ? request.currentUser.get('data') : { };
+            return  request.currentUser ? request.currentUser.get('github') : { };
         },
         successURL:    '/#!' + Buffer.from(
-            'page/User/detail.html?data=github/user'
+            'page/User/profile.html?data=user/profile'
         ).toString('base64')
     }
 ));

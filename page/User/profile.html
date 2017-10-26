@@ -1,0 +1,100 @@
+<style disabled>
+    #School {
+        padding:    0  15px;
+    }
+</style>
+
+<script>
+    require(['jquery', 'EasyWebApp'],  function ($, EWA) {
+
+        var iWebApp = new EWA(),
+            Data = {
+                type:    'data',
+                src:     'eol.cn'
+            };
+
+        iWebApp.off( Data ).on(Data,  function (_, data) {
+
+            return data.school;
+        });
+
+        EWA.component(function (data) {
+
+            data.switch = function (event) {
+
+                if ( this.edit )  return;
+
+                this.edit = 1;
+
+                event.stopPropagation(),  event.preventDefault();
+            };
+
+            data.complete = iWebApp.loadPage.bind(iWebApp, -1);
+        });
+    });
+</script>
+
+<form class="form-horizontal"
+      method="PUT" action="?data=user/profile" ondata="${view.complete}">
+
+    <fieldset disabled="${! scope.edit}"><legend>个人简介</legend>
+
+        <small class="help-block">完善信息利于享受更方便的服务~</small>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">性别</label>
+            <div class="col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="gender" value="-1"
+                           checked="${view.gender == this.value}" />
+                    <abbr title="不便透露">?</abbr>
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="gender" value="0"
+                           checked="${view.gender == this.value}" />
+                    <abbr title="美女">♀</abbr>
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="gender" value="1"
+                           checked="${view.gender == this.value}" />
+                    <abbr title="帅哥">♂</abbr>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">出生年份</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control"
+                       name="year" value="${scope.year || 1989}"
+                       max="${(new Date()).getFullYear()}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">毕业院校</label>
+
+            <div class="col-sm-10" id="School"
+                 data-href="../../component/Search.html"
+                 data-key="school"
+                 data-api="http://data.api.gkcx.eol.cn/soudaxue/queryschool.html?messtype=jsonp&callback=?&keyWord1=">
+                <span slot="item">
+                    <!--${view.schoolname}-->
+                    <small class="pull-right"><!--${view.province}--></small>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">常居地</label>
+            <div class="col-sm-10"
+                 data-href="../../component/Admin_District.html"
+                 data-key="8d1f86ee16089781fdd20687a8d657fd"
+                 data-adcode="${view.adcode}">
+            </div>
+        </div>
+    </fieldset>
+    <hr />
+    <button class="btn btn-primary btn-block btn-lg"
+            type="${scope.edit ? 'submit' : 'button'}" onclick="${view.switch}">
+
+        <!--${scope.edit ? '保存' : '编辑'}-->
+    </button>
+</form>

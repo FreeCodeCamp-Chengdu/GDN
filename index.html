@@ -83,23 +83,47 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <div data-href="?data=user/OAuth">
+                    <ul class="nav navbar-nav navbar-right">
 
-                    <li style="display: ${view.userID ? 'none' : ''}">
+                        <li style="display: ${scope.github ? 'none' : ''}">
+                            <a target="_top"
+                               href="https://fcc-cdg.leanapp.cn/github/oAuth">
+                                GitHub 登录
+                            </a>
+                        </li>
+                        <li style="display: ${scope.github ? '' : 'none'}"
+                            class="dropdown">
 
-                        <a target="_top" href="./github/oAuth">
-                            GitHub 登录
-                        </a>
-                    </li>
-                    <li style="display: ${view.userID ? '' : 'none'}">
+                            <a href="#" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
 
-                        <a href="page/User/detail.html?data=github/users/${view.userID}">
-
-                            <i class="glyphicon glyphicon-user"></i>
-                            <!--${view.userName}-->
-                        </a>
-                    </li>
-                </ul>
+                                <i class="glyphicon glyphicon-user"></i>
+                                <!--${view.github.name}-->
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="page/User/detail.html?data=github/users/${view.github.login}">
+                                        用户主页
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="page/User/profile.html?data=user/profile">
+                                        用户档案
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a target="_top" href="user/signOut">
+                                        退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>

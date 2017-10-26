@@ -1,6 +1,7 @@
 'use strict';
 
 const Express = require('express'),
+      CORS = require('cors'),
       bodyParser = require('body-parser'),
       LeanCloud = require('leanengine');
 
@@ -17,6 +18,21 @@ app.get('/server/*',  function () {
 });
 
 app.use( Express.static('./') );
+
+app.use(CORS({
+    origin:                  function (origin, callback) {
+        if (
+            (! origin)  ||
+            (origin.indexOf('//localhost') > -1)  ||
+            (origin.indexOf( process.env.WEB_DOMAIN )  >  -1)
+        )
+            callback(null, true);
+        else
+            callback(new Error(`"${origin}" isn't allowed by CORS`));
+    },
+    credentials:             true,
+    optionsSuccessStatus:    200
+}));
 
 app.use( require('cookie-parser')() );
 
@@ -44,6 +60,8 @@ app.use(LeanCloud.Cloud.CookieSession({
 /* ---------- RESTful API 路由 ---------- */
 
 app.use( require('./GitHub') );
+
+app.use('/user', require('./User'));
 
 app.use('/survey', require('./FormEditor'));
 

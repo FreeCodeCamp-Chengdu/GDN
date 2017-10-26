@@ -89,16 +89,6 @@ require([
 
             $( $_Link[0].parentNode ).addClass('active')
                 .siblings().removeClass('active');
-        }).on({
-            type:      'ready',
-            target:    iWebApp.$_View[0]
-        },  function () {
-
-            var cookie = $.paramJSON(
-                    '?'  +  document.cookie.replace(/;\s*/g, '&')
-                );
-
-            if ( cookie.userID )  $('html').view().render( cookie );
         });
 
     //  搜索框
