@@ -37,17 +37,35 @@ router.get('/signOut',  function (request, response) {
 
 router.all('/profile',  function (request, response) {
 
-    var user = request.currentUser, error;
+    var user = request.currentUser, data = request.body, error;
 
     if ( user ) {
         switch ( request.method.toUpperCase() ) {
-            case 'PUT':
+            case 'PUT':    {
+                var Email = user.get('email');
+
                 return  Utility.send_result(
                     response,
-                    user.save({profile: request.body},  {user: user})
+                    user.save(
+                        {email: data.email, profile: data},  {user: user}
+                    ).then(function () {
+
+                        return  (data.email !== Email)  ?
+                            LeanCloud.User.requestEmailVerify(
+                                data.email
+                            )  :
+                            arguments[0];
+                    })
                 );
+            }
             case 'GET':
-                return  response.json( user.get('profile') );
+                return response.json(Object.assign(
+                    {
+                        emailVerified:          user.get('emailVerified'),
+                        mobilePhoneVerified:    user.get('mobilePhoneVerified')
+                    },
+                    user.get('profile')
+                ));
             default:       {
                 error = new URIError('Method Not Allowed');
 

@@ -24,6 +24,7 @@ app.use(CORS({
         if (
             (! origin)  ||
             (origin.indexOf('//localhost') > -1)  ||
+            (origin.indexOf(`//${process.env.CLOUD_APP}.leanapp.cn`) > -1)  ||
             (origin.indexOf( process.env.WEB_DOMAIN )  >  -1)
         )
             callback(null, true);
@@ -60,6 +61,8 @@ app.use(LeanCloud.Cloud.CookieSession({
 /* ---------- RESTful API 路由 ---------- */
 
 app.use( require('./GitHub') );
+
+app.use('/openAPI', require('./OpenAPI'));
 
 app.use('/user', require('./User'));
 

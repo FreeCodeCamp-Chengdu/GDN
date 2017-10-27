@@ -10,12 +10,12 @@
         var iWebApp = new EWA(),
             Data = {
                 type:    'data',
-                src:     'eol.cn'
+                src:     '/university'
             };
 
         iWebApp.off( Data ).on(Data,  function (_, data) {
 
-            return data.school;
+            return data.list;
         });
 
         EWA.component(function (data) {
@@ -65,7 +65,8 @@
             <label class="control-label col-sm-2">出生年份</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control"
-                       name="year" value="${scope.year || 1989}"
+                       name="year" required
+                       value="${scope.year || 1989}"
                        max="${(new Date()).getFullYear()}" />
             </div>
         </div>
@@ -74,8 +75,7 @@
 
             <div class="col-sm-10" id="School"
                  data-href="../../component/Search.html"
-                 data-key="school"
-                 data-api="http://data.api.gkcx.eol.cn/soudaxue/queryschool.html?messtype=jsonp&callback=?&keyWord1=">
+                 data-key="school" data-api="openAPI/university?keyWord=">
                 <span slot="item">
                     <!--${view.schoolname}-->
                     <small class="pull-right"><!--${view.province}--></small>
@@ -88,6 +88,31 @@
                  data-href="../../component/Admin_District.html"
                  data-key="8d1f86ee16089781fdd20687a8d657fd"
                  data-adcode="${view.adcode}">
+            </div>
+        </div>
+    </fieldset>
+    <fieldset disabled="${! scope.edit}"><legend>联系方式</legend>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">
+                <sup>（<!--${view.emailVerified ? '已' : '未'}-->验证）</sup>
+                电邮地址
+            </label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control"
+                       name="email" required value="${view.email}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">
+                <sup>（<!--${view.mobilePhoneVerified ? '已' : '未'}-->验证）</sup>
+                手机号码
+            </label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control"
+                       name="mobilePhoneNumber"
+                       value="${view.mobilePhoneNumber}"
+                       placeholder="暂只支持中国大陆运营商" />
             </div>
         </div>
     </fieldset>

@@ -12,7 +12,30 @@
         content:              counter( index )'. ';
     }
 </style>
+<script>
+    require(['jquery', 'EasyWebApp'],  function ($, EWA) {
 
+        function renameID(key) {
+
+            this[ key ] = this.objectId;    delete this.objectId;
+
+            return this;
+        }
+
+        EWA.component(function (data) {
+
+            renameID.call(data, 'fid');
+
+            $.each(data.questions,  function () {
+
+                $.each(
+                    renameID.call(this, 'qid').options,
+                    $.proxy(renameID, null, 'oid')
+                );
+            });
+        });
+    });
+</script>
 
 <h2><!--${view.title}--></h2>
 
@@ -30,9 +53,10 @@
                 <span data-url="/survey/question/${scope.qid}/option">
 
                     <input type="${scope.multiple ? 'checkbox' : 'radio'}"
-                           id="${view.objectId}" />
+                           id="${view.oid}"
+                           name="${scope.qid}" value="${view.oid}" />
 
-                    <label for="${view.objectId}"><!--${scope.title}--></label>
+                    <label for="${view.oid}"><!--${scope.title}--></label>
                 </span>
             </div>
         </fieldset>

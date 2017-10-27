@@ -23,6 +23,10 @@ module.exports = {
             response.json(
                 (data.toJSON instanceof Function)  ?  data.toJSON()  :  data
             ).end();
+
+        },  function (error) {
+
+            response.status(error.code || error.status || 400).json( error ).end();
         });
     },
     query:          function (table, include, where, parameter) {

@@ -38,7 +38,7 @@
 
             var $_Tips = this.$_View.find('.Box > ul');
 
-            function search(event) {
+            data.search = function (event) {
 
                 var input = event.target;
 
@@ -47,11 +47,7 @@
                 iWebApp.load( $_Tips.show() );
 
                 event.stopPropagation();
-            }
-
-            data.onInput = $.throttle(0.5, search);
-
-            data.onChange = search;
+            };
 
             data.select = function (event) {
 
@@ -66,7 +62,7 @@
     <input type="search" class="form-control"
            name="${view.key}" value="${scope[ view.key ]}"
            autocomplete="off" placeholder="在校生填当前学校"
-           oninput="${view.onInput}" onchange="${view.onChange}" />
+           onchange="${view.search}" />
 
     <ul data-href="?data=${view.getURL()}">
 

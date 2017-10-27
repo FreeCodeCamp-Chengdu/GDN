@@ -54,6 +54,12 @@ require([
             return  FixData( data );
         }).on({
             type:      'data',
+            method:    /POST|PUT|DELETE/i
+        },  function (_, data) {
+
+            Layer.alert(data.message || '成功');
+        }).on({
+            type:      'data',
             method:    'GET',
             src:       /gists|repos/
         },  function (event, data) {
