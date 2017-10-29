@@ -7,7 +7,7 @@ require(['jquery', 'EasyWebApp'],  function ($, EWA) {
 
     var iWebApp = new EWA();
 
-    var API_Root = iWebApp.pageRoot + 'openAPI/map/',
+    var API_Root = new URL('openAPI/map/', iWebApp.apiRoot),
         AD_Level = {province: 2,  city: 4,  district: 6};
 
 
@@ -22,7 +22,7 @@ require(['jquery', 'EasyWebApp'],  function ($, EWA) {
             setParam:     function (_, AJAX) {    //  API URL 补全
 
                 AJAX.option.url = $.extendURL(
-                    AJAX.option.url.replace(iWebApp.pageRoot, API_Root),
+                    AJAX.option.url.replace(iWebApp.apiRoot, API_Root),
                     {
                         extensions:     'base',
                         subdistrict:    1

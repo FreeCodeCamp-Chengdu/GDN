@@ -33,7 +33,8 @@ require([
 
         var iWebApp = $('#PageBox').iWebApp(
                 (self.location.hostname === 'localhost')  ?
-                    self.location  :  'https://fcc-cdg.leanapp.cn/'
+                    self.location.href.split('#')[0]  :
+                    'https://fcc-cdg.leanapp.cn/'
             );
 
     //  JSON 请求预处理
@@ -93,8 +94,7 @@ require([
                     )[0] || $_Link
                 );
 
-            $( $_Link[0].parentNode ).addClass('active')
-                .siblings().removeClass('active');
+            $_Link.parent().addClass('active').siblings().removeClass('active');
         });
 
     //  搜索框

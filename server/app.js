@@ -20,17 +20,11 @@ app.get('/server/*',  function () {
 app.use( Express.static('./') );
 
 app.use(CORS({
-    origin:                  function (origin, callback) {
-        if (
-            (! origin)  ||
-            (origin.indexOf('//localhost') > -1)  ||
-            (origin.indexOf(`//${process.env.CLOUD_APP}.leanapp.cn`) > -1)  ||
-            (origin.indexOf( process.env.WEB_DOMAIN )  >  -1)
-        )
-            callback(null, true);
-        else
-            callback(new Error(`"${origin}" isn't allowed by CORS`));
-    },
+    origin:                  [
+        'http://localhost',
+        `https://${process.env.CLOUD_APP}.leanapp.cn`,
+        process.env.WEB_DOMAIN
+    ],
     credentials:             true,
     optionsSuccessStatus:    200
 }));
