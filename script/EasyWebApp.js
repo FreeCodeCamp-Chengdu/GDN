@@ -650,11 +650,12 @@ var InnerLink = (function ($, Observer) {
             var iOption = {
                     method:         this.method,
                     url:            this.src,
-                    beforeSend:     arguments[0],
+                    xhrFields:      {withCredentials: true},
                     contentType:
                         this.contentType  +  '; charset='  +  this.charset[0],
                     dataType:
                         (this.src.match(/\?/g) || '')[1]  ?  'jsonp'  :  'json',
+                    beforeSend:     arguments[0],
                     complete:       function (XHR) {
 
                         if (this.method === 'GET')  Get_URL = this.url;

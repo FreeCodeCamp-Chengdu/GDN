@@ -5,8 +5,9 @@
 
 require(['jquery', 'EasyWebApp'],  function ($, EWA) {
 
-    var iWebApp = new EWA(),
-        API_Root = 'https://restapi.amap.com/v3/',
+    var iWebApp = new EWA();
+
+    var API_Root = iWebApp.pageRoot + 'openAPI/map/',
         AD_Level = {province: 2,  city: 4,  district: 6};
 
 
@@ -23,7 +24,6 @@ require(['jquery', 'EasyWebApp'],  function ($, EWA) {
                 AJAX.option.url = $.extendURL(
                     AJAX.option.url.replace(iWebApp.pageRoot, API_Root),
                     {
-                        key:            data.key,
                         extensions:     'base',
                         subdistrict:    1
                     }

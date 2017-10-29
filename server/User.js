@@ -41,23 +41,23 @@ router.all('/profile',  function (request, response) {
 
     if ( user ) {
         switch ( request.method.toUpperCase() ) {
-            case 'PUT':    {
-                var Email = user.get('email');
-
+            case 'PUT':
                 return  Utility.send_result(
                     response,
                     user.save(
-                        {email: data.email, profile: data},  {user: user}
+                        {
+                            email:                data.email || null,
+                            mobilePhoneNumber:    data.mobilePhoneNumber || null,
+                            profile:              data
+                        },
+                        {user: user}
                     ).then(function () {
 
-                        return  (data.email !== Email)  ?
-                            LeanCloud.User.requestEmailVerify(
-                                data.email
-                            )  :
+                        return data.SMS_Code ?
+                            LeanCloud.User.verifyMobilePhone( data.SMS_Code )  :
                             arguments[0];
                     })
                 );
-            }
             case 'GET':
                 return response.json(Object.assign(
                     {

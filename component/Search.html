@@ -33,10 +33,12 @@
 
             data.getURL = function () {
 
-                return  data.api + this.valueOf()[ data.key ];
+                var data = this.valueOf();
+
+                return  data.api + data[ data.key ];
             };
 
-            var $_Tips = this.$_View.find('.Box > ul');
+            var $_Tips = this.$_View.find('.Box > ul'), VM = this;
 
             data.search = function (event) {
 
@@ -53,6 +55,8 @@
 
                 $_Tips.hide().prevAll('[type="search"]')[0].value =
                     event.target.textContent.trim().split("\n")[0].trim();
+
+                VM.emit('check', this.valueOf());
             };
         });
     });

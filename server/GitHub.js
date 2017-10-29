@@ -27,8 +27,13 @@ router.use('/github', GitHub(
 
                 response.saveCurrentUser( user );
 
-                return  user.save({github: data},  {user: user});
-
+                return user.save(
+                    {
+                        username:    data.login,
+                        github:      data
+                    },
+                    {user: user}
+                );
             }).then(function () {
 
                 return data;
