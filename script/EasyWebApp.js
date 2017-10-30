@@ -1836,7 +1836,17 @@ var WebApp = (function ($, Observer, View, HTMLView, ListView, TreeView, DOMkit,
         if (_This_ !== this)  return _This_;
 
         Observer.call(this, Page_Box).pageRoot = new URL($.filePath() + '/');
-
+        /**
+         * 后端 API 根路径
+         *
+         * @name     apiRoot
+         * @type     {URL}
+         *
+         * @memberof WebApp
+         * @instance
+         *
+         * @readonly
+         */
         this.apiRoot = new URL(API_Root || '',  this.pageRoot);
 
         this.length = 0;
@@ -2145,9 +2155,11 @@ var WebApp = (function ($, Observer, View, HTMLView, ListView, TreeView, DOMkit,
             if (isNaN( URI ))
                 return  this.load( $('<a href="' + URI + '" />')[0] );
 
-            var link = this[this.lastPage + URI];
+            var link = this[+URI + this.lastPage];
 
             if ( link )  delete link.view;
+
+            if (! URI)  return  this.load( link );
 
             self.history.go( URI );
 
@@ -2223,7 +2235,7 @@ var WebApp = (function ($, Observer, View, HTMLView, ListView, TreeView, DOMkit,
  *
  * @module    {function} WebApp
  *
- * @version   4.0 (2017-10-20) stable
+ * @version   4.0 (2017-10-30) stable
  *
  * @requires  jquery
  * @see       {@link http://jquery.com/ jQuery}

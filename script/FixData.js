@@ -13,6 +13,7 @@ define(['jquery', 'TimePassed', 'marked'],  function ($, TimePassed, marked) {
             var name = key.split('_');
 
             switch ( name.slice(-1)[0] ) {
+                case 'date':           ;
                 case 'on':             ;
                 case 'at':             {
                     data[ key ] = value;

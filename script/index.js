@@ -64,8 +64,13 @@ require([
             method:    'GET',
             src:       /gists|repos/
         },  function (event, data) {
-
-            if ((data instanceof Array)  &&  (event.src.indexOf('/contents/') < 0))
+            if (
+                (data instanceof Array)  &&
+                (event.src.indexOf('/contents/') < 0)  &&
+                (event.src.indexOf('/commits') < 0)  &&
+                (event.src.indexOf('/branches') < 0)  &&
+                (event.src.indexOf('/tags') < 0)
+            )
                 return {
                     list:     data,
                     total:

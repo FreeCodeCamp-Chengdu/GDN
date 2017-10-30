@@ -31,6 +31,6 @@ require(['jquery', 'EasyWebApp'],  function ($, EWA) {
             this.degree = data.level;
         };
 
-        data.complete = iWebApp.loadPage.bind(iWebApp, -1);
+        data.complete = iWebApp.loadPage.bind(iWebApp, 0);
     });
 });
