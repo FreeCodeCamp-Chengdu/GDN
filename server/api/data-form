@@ -1,4 +1,4 @@
-Post /Activity
+Post /hackathon/Activity
 {
     data:activityObj
 }
@@ -20,7 +20,7 @@ activityObj = {
                   "location" :"",
               };
 
-Post /repos
+Post /hackathon/repos
 
 {
     data: reposObj
@@ -40,4 +40,19 @@ reposObj =  {
                    ....
                ]
                },
+
+Post /sms/batch_send/:tplid(短信模板ID)
+
+{
+    data:{
+        "#n#":"XXX",
+            ...  (请注意key与短信模板中对应)
+    },
+    time: activityTime （String）
+    mobile: [
+        mobile1,  （String）
+        mobile2,
+        ....
+    ]
+}
 

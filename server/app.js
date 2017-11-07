@@ -63,6 +63,7 @@ app.use('/user', require('./User'));
 app.use('/survey', require('./FormEditor'));
 
 app.use('/hackathon', require('./api/hackathon'));
+app.use('/sms', require('./api/sms'));
 
 
 
