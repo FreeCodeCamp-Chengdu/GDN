@@ -20,11 +20,15 @@ app.get('/server/*',  function () {
 app.use( Express.static('./') );
 
 app.use(CORS({
-    origin:                  [
+    origin:                  (process.env.WEB_DOMAIN || '').split('|').map(
+        function (domain) {
+
+            return `https://${domain}`;
+        }
+    ).concat(
         'http://localhost',
-        `https://${process.env.CLOUD_APP}.leanapp.cn`,
-        process.env.WEB_DOMAIN
-    ],
+        `https://${process.env.CLOUD_APP}.leanapp.cn`
+    ),
     credentials:             true,
     optionsSuccessStatus:    200
 }));
@@ -63,6 +67,7 @@ app.use('/user', require('./User'));
 app.use('/survey', require('./FormEditor'));
 
 app.use('/hackathon', require('./api/hackathon'));
+
 app.use('/sms', require('./api/sms'));
 
 

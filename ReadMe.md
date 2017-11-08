@@ -16,7 +16,9 @@
 
  5. Web 组件化引擎：[EasyWebApp v4](https://gitee.com/Tech_Query/EasyWebApp/tree/MVVM/)
 
- 6. 开放数据：[GitHub API ( RESTful )](https://developer.github.com/v3/)
+ 6. Web 组件库：[BootEWA](https://boot-web.tk/)
+
+ 7. 开放数据：[GitHub API ( RESTful )](https://developer.github.com/v3/)
 
 
 ## 知识库

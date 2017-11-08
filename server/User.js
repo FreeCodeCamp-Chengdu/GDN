@@ -1,6 +1,7 @@
 'use strict';
 
-const router = require('express').Router(),
+const URL_Utility = require('url'),
+      router = require('express').Router(),
       LeanCloud = require('leanengine'),
       Utility = require('./FormEditor/utility');
 
@@ -31,7 +32,7 @@ router.get('/signOut',  function (request, response) {
 
     response.clearCurrentUser();
 
-    response.redirect('/');
+    response.redirect(URL_Utility.resolve(request.headers.referer, '/'));
 });
 
 

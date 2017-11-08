@@ -2,6 +2,9 @@ require([
     'jquery', 'Layer', 'FixData', 'marked', 'EasyWebApp', 'BootStrap'
 ],  function ($, Layer, FixData, marked) {
 
+    $.ajaxSetup({xhrFields:  {withCredentials: true}});
+
+
     $( document ).on('ajaxError',  function (_, XHR) {
 
     //  AJAX 异常处理

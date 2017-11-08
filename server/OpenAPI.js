@@ -1,6 +1,7 @@
 'use strict';
 
-const router = require('express').Router(),
+const QueryString = require('querystring'),
+      router = require('express').Router(),
       Request = require('request-promise-native'),
       Utility = require('./FormEditor/utility');
 
@@ -8,10 +9,16 @@ const router = require('express').Router(),
 
 function queryEdu(type, parameter, response) {
 
+    parameter = Object.assign({ }, parameter);
+
+    parameter.messtype = 'json';
+
     Utility.send_result(
         response,
         Request({
-            uri:     `http://data.api.gkcx.eol.cn/soudaxue/query${type}.html?messtype=json&${parameter}`,
+            uri:     `http://data.api.gkcx.eol.cn/soudaxue/query${type}.html?${
+                QueryString.stringify( parameter )
+            }`,
             json:    true
         }).then(function (data) {
 
@@ -25,9 +32,15 @@ function queryEdu(type, parameter, response) {
 
 router.get('/university/specialty',  function (request, response) {
 
+    var data = request.query;
+
     queryEdu(
         'specialty',
-        `keyWord2=${encodeURIComponent( request.query.keyWord )}`,
+        {
+            keyWord2:    encodeURIComponent(data.keyWord || ''),
+            size:        data.rows,
+            page:        data.page
+        },
         response
     );
 });
@@ -35,13 +48,16 @@ router.get('/university/specialty',  function (request, response) {
 
 router.get(/\/university(\/(\d+))?/,  function (request, response) {
 
+    var data = request.query;
+
     queryEdu(
         'school',
-        `schoolid=${
-            request.params[1] || ''
-        }&keyWord1=${
-            encodeURIComponent( request.query.keyWord )
-        }`,
+        {
+            schoolid:    request.params[1] || '',
+            keyWord1:    encodeURIComponent(data.keyWord || ''),
+            size:        data.rows,
+            page:        data.page
+        },
         response
     );
 });
