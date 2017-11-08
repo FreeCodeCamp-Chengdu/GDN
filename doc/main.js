@@ -1,14 +1,15 @@
 require.config({
     paths: {
-        bootstrap: './vendor/bootstrap.min',
-        diffMatchPatch: './vendor/diff_match_patch.min',
-        handlebars: './vendor/handlebars.min',
+        bootstrap: 'https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min',
+        diffMatchPatch:
+            'https://cdn.bootcss.com/diff_match_patch/20121119/diff_match_patch',
+        handlebars: 'https://cdn.bootcss.com/handlebars.js/4.0.10/handlebars.min',
         handlebarsExtended: './utils/handlebars_helper',
-        jquery: './vendor/jquery.min',
+        jquery: 'https://cdn.bootcss.com/jquery/2.2.4/jquery.min',
         locales: './locales/locale',
         lodash: './vendor/lodash.custom.min',
         pathToRegexp: './vendor/path-to-regexp/index',
-        prettify: './vendor/prettify/prettify',
+        prettify: 'https://cdn.bootcss.com/prettify/r298/prettify.min',
         semver: './vendor/semver.min',
         utilsSampleRequest: './utils/send_sample_request',
         webfontloader: './vendor/webfontloader',

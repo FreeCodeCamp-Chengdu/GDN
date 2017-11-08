@@ -7,9 +7,13 @@
     "node": "^6.5.0"
   },
   "main": "server/index.js",
+  "apidoc": {
+    "url": "http://localhost:3000"
+  },
   "scripts": {
     "start": "node server/index.js",
-    "dev": "nodemon --inspect  server/index.js",
+    "dev": "nodemon --inspect server/index.js",
+    "build": "apidoc -i server/ -t node_modules/apidoc-ewa/source/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -43,6 +47,8 @@
     "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
+    "apidoc": "^0.17.6",
+    "apidoc-ewa": "^1.0.1",
     "nodemon": "^1.12.1"
   }
 }

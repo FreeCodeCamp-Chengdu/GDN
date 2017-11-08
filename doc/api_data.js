@@ -1,4 +1,4 @@
-[
+define({ "api": [
   {
     "type": "get",
     "url": "/hackathon/activity",
@@ -88,7 +88,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "api/doc.js",
+    "filename": "server/api/hackathon.js",
     "groupTitle": "activity"
   },
   {
@@ -180,7 +180,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "api/doc.js",
+    "filename": "server/api/hackathon.js",
     "groupTitle": "activity"
   },
   {
@@ -251,7 +251,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "api/doc.js",
+    "filename": "server/api/hackathon.js",
     "groupTitle": "repos"
   },
   {
@@ -308,7 +308,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "api/doc.js",
+    "filename": "server/api/hackathon.js",
     "groupTitle": "repos"
   },
   {
@@ -379,7 +379,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "api/doc.js",
+    "filename": "server/api/hackathon.js",
     "groupTitle": "repos"
   },
   {
@@ -439,7 +439,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "api/doc.js",
+    "filename": "server/api/sms.js",
     "groupTitle": "sms"
   },
   {
@@ -512,7 +512,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "api/doc.js",
+    "filename": "server/api/sms.js",
     "groupTitle": "sms"
   }
-]
+] });
