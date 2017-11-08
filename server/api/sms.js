@@ -28,4 +28,15 @@ router.post('/batch_send/:tplid', function(req, res) {
     res.send(`成功！将于${time.toString()}发送短信`);
 });
 
+router.get('/queryreply', function(req, res) {
+    const url  = "https://sms.yunpian.com/v2/sms/pull_reply.json";
+    const post_data = {  
+        'apikey': apikey, 
+        'page_size': 100,
+        };
+    request.post(url, {form:post_data}, (reqb, resb, result) => {
+        res.send(result);
+    });
+})
+
 module.exports = router;

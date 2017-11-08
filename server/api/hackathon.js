@@ -49,6 +49,7 @@ router.post('/repos', function (req, res) {
 router.get('/repos', function (req, res) {
     const activityID = req.param('activityID');
     const repoQuery  = new AV.Query('Repos');
+    repoQuery.select(['id', 'name', 'activityID'])
     if (activityID) {
         repoQuery.equalTo('activityID',activityID);
     }
