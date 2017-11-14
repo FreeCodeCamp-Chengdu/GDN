@@ -5,7 +5,7 @@ const schedule = require('node-schedule');
 const apikey =  process.env.SMS_APIKEY;
 
 /**
- * @api {post} /sms/batch_send/:tplid 群发通知短信
+ * @api {post} /sms/batch_send/:tplid 按模板群发通知短信
  * @apiName batch_send SMS
  * @apiDescription  短信发送基于“云片”(https://www.yunpian.com/)平台,请先于平台上获取appkey，并审核签名/模板
  * @apiGroup sms
@@ -28,17 +28,73 @@ router.post('/batch_send/:tplid', function(req, res) {
         'tpl_value':qs.stringify(tpl_value),
         };
     let time = new Date(req.body.time);  //活动时间，字符串
-    time.setDate(time.getDate()-2);   //活动前两天通知
-    schedule.scheduleJob(time, () => {
-        request.post(url, {form:post_data}, (reqb, resb, result) => {
-            console.log(result);
-        })
-    });
-    // request.post(url, {form:post_data}, (reqb, resb, result) => {
-    //     console.log(result);
-    // })
-    res.send(`成功！将于${time.toString()}发送短信`);
+    if (time.getDate() == time.substring(time.length-2)) {
+        time.setDate(time.getDate()-2);   //活动前两天通知
+        schedule.scheduleJob(time, () => {
+            request.post(url, {form:post_data}, (reqb, resb, result) => {
+                console.log(result);
+            })
+        });
+        // request.post(url, {form:post_data}, (reqb, resb, result) => {
+        //     console.log(result);
+        // })
+        res.send(`成功！将于${time.toString()}发送短信`)
+    } else{
+        res.error('please set right time');
+    }
 });
+
+/**
+ * @api {post} /sms/batch_send/ 群发通知短信
+ * @apiName batch_send SMS
+ * @apiDescription  短信发送基于“云片”(https://www.yunpian.com/)平台,请先于平台上获取appkey，并审核签名/模板
+ * @apiGroup sms
+ * @apiParam {String} text 发送的内容，会与模板已审核模板自动匹配
+ * @apiParam {String} time 活动开始的时间，短信自动将于活动开始前2天发送
+ * @apiParam {String[]} mobile 要发送的手机号码列表
+ * @apiSuccess {String} msg 成功！将于XXX时发送短信
+ */
+
+router.post('/batch_send', function(req, res) {
+    const url  = "https://sms.yunpian.com/v2/sms/batch_send.json";
+    const text = req.body.text;   //参数对象，请注意与相应模板中变量名对应
+    const mobile = req.body.mobile.join();
+    const post_data = {
+        'apikey': apikey,
+        'mobile': mobile,
+        'text': text,
+        };
+        let time = new Date(req.body.time);  //活动时间，字符串
+        if (time.getDate() == time.substring(time.length-2)) {
+            time.setDate(time.getDate()-2);   //活动前两天通知
+            schedule.scheduleJob(time, () => {
+                request.post(url, {form:post_data}, (reqb, resb, result) => {
+                    console.log(result);
+                })
+            });
+            res.send(`成功！将于${time.toString()}发送短信`);
+        } else{
+            res.error('please set right time');
+        }
+});
+
+router.post('/get_shorturl', function(req, res) {
+    const url = 'https://sms.yunpian.com/v2/short_url/shorten.json';
+    const longUrl = req.body.url;
+    const post_data = {
+        'apikey': apikey,
+        'long_url': longUrl,
+        'stat_duration': 3
+    }
+    request.post(url, {form:post_data}, (reqb, resb, result) => {
+        if(result.msg == 'OK'){
+            res.send(result.short_url);
+        } else {
+            res.send(result);
+        }
+    });
+})
+
 
 /**
  * @api {get} /sms/queryreply 查询回复短信
