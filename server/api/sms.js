@@ -5,13 +5,13 @@ const schedule = require('node-schedule');
 const apikey =  process.env.SMS_APIKEY;
 
 /**
- * @api {post} /sms/batch_send/:tplid 按模板群发通知短信
- * @apiName batch_send SMS
- * @apiDescription  短信发送基于“云片”(https://www.yunpian.com/)平台,请先于平台上获取appkey，并审核签名/模板
+ * @api {post} /sms/batch_send/:tplid 延迟2天按模板群发通知短信
+ * @apiName batch_send_tpl SMS
+ * @apiDescription  短信发送基于“云片”(https://www.yunpian.com/)平台,请先于平台上获取apikey，并审核签名/模板
  * @apiGroup sms
  * @apiParam (URL参数) {Number} tplid 要发送的短信模板ID
  * @apiParam {Object} data 传送的模板参数，请注意key要与模板中对应
- * @apiParam {String} time 活动开始的时间，短信自动将于活动开始前2天发送
+ * @apiParam {String} time 活动开始的日期，短信自动将于活动开始前2天发送,格式是"XXXX/XX/XX"
  * @apiParam {String[]} mobile 要发送的手机号码列表
  * @apiSuccess {String} msg 成功！将于XXX时发送短信
  */
@@ -40,17 +40,17 @@ router.post('/batch_send/:tplid', function(req, res) {
         // })
         res.send(`成功！将于${time.toString()}发送短信`)
     } else{
-        res.error('please set right time');
+        res.send('please set right time');
     }
 });
 
 /**
- * @api {post} /sms/batch_send/ 群发通知短信
+ * @api {post} /sms/batch_send/ 延迟2天群发通知短信
  * @apiName batch_send SMS
- * @apiDescription  短信发送基于“云片”(https://www.yunpian.com/)平台,请先于平台上获取appkey，并审核签名/模板
+ * @apiDescription  短信发送基于“云片”(https://www.yunpian.com/)平台,请先于平台上获取apikey，并审核签名/模板
  * @apiGroup sms
  * @apiParam {String} text 发送的内容，会与模板已审核模板自动匹配
- * @apiParam {String} time 活动开始的时间，短信自动将于活动开始前2天发送
+ * @apiParam {String} time 活动开始的日期，短信自动将于活动开始前2天发送,格式是"XXXX/XX/XX"
  * @apiParam {String[]} mobile 要发送的手机号码列表
  * @apiSuccess {String} msg 成功！将于XXX时发送短信
  */
@@ -65,7 +65,7 @@ router.post('/batch_send', function(req, res) {
         'text': text,
         };
         let time = new Date(req.body.time);  //活动时间，字符串
-        if (time.getDate() == time.substring(time.length-2)) {
+        if (time.getDate() == req.body.time.substring(req.body.time.length-2)) {
             time.setDate(time.getDate()-2);   //活动前两天通知
             schedule.scheduleJob(time, () => {
                 request.post(url, {form:post_data}, (reqb, resb, result) => {
@@ -74,9 +74,42 @@ router.post('/batch_send', function(req, res) {
             });
             res.send(`成功！将于${time.toString()}发送短信`);
         } else{
-            res.error('please set right time');
+            res.send('please set right time');
         }
 });
+
+/**
+ * @api {post} /sms/quick_send/ 立即群发通知短信
+ * @apiName quick_send SMS
+ * @apiDescription  短信发送基于“云片”(https://www.yunpian.com/)平台,请先于平台上获取apikey，并审核签名/模板
+ * @apiGroup sms
+ * @apiParam {String} text 发送的内容，会与模板已审核模板自动匹配
+ * @apiParam {String[]} mobile 要发送的手机号码列表
+ * @apiSuccess {Object} result 发送结果
+ */
+
+router.post('/quick_send', function(req, res) {
+    const url  = "https://sms.yunpian.com/v2/sms/batch_send.json";
+    const text = req.body.text;   //参数对象，请注意与相应模板中变量名对应
+    const mobile = req.body.mobile.join();
+    const post_data = {
+        'apikey': apikey,
+        'mobile': mobile,
+        'text': text,
+        };
+        request.post(url, {form:post_data}, (reqb, resb, result) => {
+            result = JSON.parse(result);
+            res.send(result);
+        });
+});
+
+/**
+ * @api {post} /sms/get_shorturl/ 获取链接短地址
+ * @apiName batch_send SMS
+ * @apiGroup sms
+ * @apiParam {String} url 需要转换的url
+ * @apiSuccess {Object} short_url 包换短地址的对象
+ */
 
 router.post('/get_shorturl', function(req, res) {
     const url = 'https://sms.yunpian.com/v2/short_url/shorten.json';
@@ -87,7 +120,8 @@ router.post('/get_shorturl', function(req, res) {
         'stat_duration': 3
     }
     request.post(url, {form:post_data}, (reqb, resb, result) => {
-        if(result.msg == 'OK'){
+        result = JSON.parse(result);
+        if(result.msg == 'OK') {
             res.send(result.short_url);
         } else {
             res.send(result);
@@ -118,6 +152,7 @@ router.get('/queryreply', function(req, res) {
         'page_size': 100,
         };
     request.post(url, {form:post_data}, (reqb, resb, result) => {
+        result = JSON.parse(result);
         res.send(result);
     });
 })
