@@ -13,7 +13,7 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "nodemon --inspect server/index.js",
-    "build": "apidoc -i server/ -t node_modules/apidoc-ewa/source/",
+    "build": "apidoc -i server/ -o docs/RESTful-API -t node_modules/apidoc-ewa/source/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

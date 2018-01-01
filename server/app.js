@@ -12,12 +12,7 @@ const app = Express();
 
 //  HTTP 基础中间件
 
-app.get('/server/*',  function () {
-
-    arguments[1].status(404).end();
-});
-
-app.use( Express.static('./') );
+app.use( Express.static('./docs') );
 
 app.use(CORS({
     origin:                  (process.env.WEB_DOMAIN || '').split('|').map(

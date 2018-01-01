@@ -1,0 +1,111 @@
+<!DocType HTML>
+<html lang="zh-CN"><head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+
+    <title>Git 开发者网络</title>
+    <link rel="icon" href="favicon.ico" />
+
+    <script src="https://og6593g2z.qnssl.com/fundebug.0.3.3.min.js"
+            apikey="6d1a435a226fceec037d952110907fe0fbed4929b5a4458c6f091fdff17f44f1"></script>
+
+    <link rel="stylesheet"
+          href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.bootcss.com/diff2html/2.3.1/diff2html.min.css" />
+    <link rel="stylesheet" href="style/index.css" />
+<!--[if lte IE 9]>
+    <script src="//cdn.bootcss.com/html5-history-api/4.2.8/history.min.js"></script>
+<![endif]-->
+    <script src="//cdn.bootcss.com/MutationObserver.js/0.3.2/mutationobserver.min.js"></script>
+    <script src="//cdn.bootcss.com/require.js/2.3.5/require.min.js"></script>
+    <script>
+        require.config({
+            baseUrl:    'script/',
+            paths:      {
+                jquery:
+                    'https://cdn.bootcss.com/jquery/3.2.1/jquery.min',
+                BootStrap:
+                    'https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min',
+                moment:
+                    'https://cdn.bootcss.com/moment.js/2.18.1/moment.min',
+                DateRangePicker:
+                    'https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min',
+                marked:
+                    'https://cdn.bootcss.com/marked/0.3.6/marked.min',
+                Layer:
+                    'https://cdn.bootcss.com/layer/3.0.3/layer.min',
+                ScrollReveal:
+                    'https://cdn.bootcss.com/scrollReveal.js/3.3.5/scrollreveal.min',
+                Media_Flow:    '../page/Media_Flow'
+            },
+            shim:       {
+                BootStrap:    ['jquery']
+            }
+        });
+    </script>
+    <script src="script/index.js"></script>
+</head><body>
+    <div data-href="component/NavBar.html?data=page/index.json" data-dark="true">
+
+        <form class="navbar-form navbar-left" slot="left">
+            <div class="form-group">
+                <input type="search" class="form-control"
+                       name="keyword" required
+                       placeholder="定位：用户 ID、仓库全名" />
+            </div>
+        </form>
+        <div data-href="?data=user/OAuth">
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li style="display: ${scope.github ? 'none' : ''}">
+                    <a target="_top"
+                       href="https://fcc-cdg.leanapp.cn/github/oAuth">
+                        GitHub 登录
+                    </a>
+                </li>
+                <li style="display: ${scope.github ? '' : 'none'}"
+                    class="dropdown">
+
+                    <a href="#" class="dropdown-toggle"
+                       data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+
+                        <i class="glyphicon glyphicon-user"></i>
+                        <!--${view.github.name}-->
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="page/User/detail.html?data=github/users/${view.github.login}">
+                                用户主页
+                            </a>
+                        </li>
+                        <li>
+                            <a href="page/User/profile.html?data=user/profile">
+                                用户档案
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a target="_top" href="https://fcc-cdg.leanapp.cn/user/signOut">
+                                退出登录
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!--  SPA Page Container  -->
+    <div class="container" id="PageBox"></div>
+
+<!--  AJAX loading  -->
+    <div data-href="component/loading.html"></div>
+</body></html>
