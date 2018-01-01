@@ -6,16 +6,19 @@
   "engines": {
     "node": "^6.5.0"
   },
-  "main": "server/index.js",
+  "main": "index.js",
   "apidoc": {
+    "name": "GDN",
     "url": "http://localhost:3000"
   },
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "nodemon --inspect server/index.js",
+    "start": "node index.js",
+    "test": "node --inspect --debug-brk index.js",
+    "dev": "nodemon --inspect index.js",
     "build": "apidoc -i server/ -o docs/RESTful-API -t node_modules/apidoc-ewa/source/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "help": "opn docs/index.html"
   },
+  "author": "FCC-CDG",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FreeCodeCamp-Chengdu/GDN.git"
@@ -26,29 +29,29 @@
     "SNS",
     "JavaScript"
   ],
-  "author": "shiy007@qq.com",
-  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/FreeCodeCamp-Chengdu/GDN/issues"
   },
-  "homepage": "https://github.com/FreeCodeCamp-Chengdu/GDN#readme",
+  "homepage": "https://git-dev.tk/",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "connect-timeout": "^1.9.0",
+    "connect-multiparty": "^2.1.0",
     "cookie-parser": "^1.4.3",
-    "cookie-session": "^1.3.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
-    "express-github": "^0.4.0",
-    "leancloud-storage": "^3.3.1",
+    "express-github": "^0.5.1",
+    "leancloud-storage": "^3.4.2",
     "leanengine": "^3.0.2",
+    "node-fetch": "^1.7.3",
     "node-schedule": "^1.2.5",
+    "qiniu": "^7.1.1",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
     "apidoc": "^0.17.6",
     "apidoc-ewa": "^1.0.1",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.7",
+    "opn-cli": "^3.1.0"
   }
 }

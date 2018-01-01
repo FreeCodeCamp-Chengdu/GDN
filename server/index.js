@@ -1,61 +1,122 @@
 'use strict';
 
-const  LeanCloud = require('leanengine'),  app = require('./app');
+const Express = require('express'),
+      CORS = require('cors'),
+      bodyParser = require('body-parser'),
+      LeanCloud = require('leanengine');
+
+const app = Express();
 
 
-LeanCloud.init({
-    appId:        process.env.LEANCLOUD_APP_ID,
-    appKey:       process.env.LEANCLOUD_APP_KEY,
-    masterKey:    process.env.LEANCLOUD_APP_MASTER_KEY
+/* ---------- Express 中间件 ---------- */
+
+//  HTTP 基础中间件
+
+app.use(CORS({
+    origin:                  (process.env.WEB_DOMAIN || '').split('|').map(
+        function (domain) {
+
+            return `https://${domain}`;
+        }
+    ).concat(
+        'http://localhost:3000',
+        `https://${process.env.CLOUD_APP}.leanapp.cn`
+    ),
+    credentials:             true,
+    optionsSuccessStatus:    200
+}));
+
+app.use( Express.static('./docs/') );
+
+app.use( require('cookie-parser')() );
+
+app.use( bodyParser.urlencoded({ extended: false }) );
+
+app.use( bodyParser.json() );
+
+//  LeanCloud 云引擎中间件
+/*
+app.use( require('connect-timeout')('15s') );
+*/
+app.use( LeanCloud.express() );
+
+app.enable('trust proxy');
+
+app.use( LeanCloud.Cloud.HttpsRedirect() );
+
+app.use(LeanCloud.Cloud.CookieSession({
+    secret:       process.env.GITHUB_APP_SECRET,
+    maxAge:       3600000,
+    fetchUser:    true
+}));
+
+
+/* ---------- RESTful API 路由 ---------- */
+
+app.use( require('./GitHub') );
+
+/**
+ * @apiDefine Model_Meta 模型元数据 后端自动生成的只读字段
+ *
+ * @apiSuccess {String}  id                唯一索引
+ * @apiSuccess {Object}  creator           创建者
+ * @apiSuccess {String}  creator.username  用户名
+ * @apiSuccess {Object}  creator.github    GitHub 用户详情
+ * @apiSuccess {Date}    createdAt         创建时间
+ * @apiSuccess {Object}  editor            编辑者
+ * @apiSuccess {String}  editor.username   用户名
+ * @apiSuccess {Object}  editor.github     GitHub 用户详情
+ * @apiSuccess {Date}    updatedAt         更新时间
+ */
+
+/**
+ * @apiDefine List_Query 批量查询
+ *
+ * @apiParam {Number} [rows=10] 结果行数
+ * @apiParam {Number} [page=1]  结果页码
+ * @apiParam {String} [keyWord] 关键词
+ *
+ * @apiSuccess {Object[]} list                   结果列表
+ * @apiSuccess {Number}   list.id                唯一索引
+ * @apiSuccess {Object}   list.creator           创建者
+ * @apiSuccess {String}   list.creator.username  用户名
+ * @apiSuccess {Object}   list.creator.github    GitHub 用户详情
+ * @apiSuccess {Date}     list.createdAt         创建时间
+ * @apiSuccess {Object}   list.editor            编辑者
+ * @apiSuccess {String}   list.editor.username   用户名
+ * @apiSuccess {Object}   list.editor.github     GitHub 用户详情
+ * @apiSuccess {Date}     list.updatedAt         更新时间
+ * @apiSuccess {Number}   total                  结果总数
+ */
+
+app.use('/openAPI', require('./OpenAPI'));
+
+app.use( require('./File') );
+
+app.use('/survey', require('./FormEditor'));
+
+app.use('/sms', require('./api/sms'));
+
+app.use( require('./User') );
+
+app.use( require('./Hackathon') );
+
+
+
+/* ---------- 异常处理 ---------- */
+
+app.use(function(request, response, next) {
+
+    // 如果任何一个路由都没有返回响应，则抛出一个 404 异常给后续的异常处理器
+
+    if ( response.headersSent )  return;
+
+    var error = new Error('Not Found');
+
+    error.code = 404;
+
+    next( error );
 });
 
-// 如果不希望使用 masterKey 权限，可以将下面一行删除
-//LeanCloud.Cloud.useMasterKey();
 
-
-app.use(function(error, request, response) {
-
-    // 忽略 websocket 的超时
-    if (request.timedout  &&  (request.headers.upgrade === 'websocket'))
-        return;
-
-    error.code = error.code || error.status || 500;
-
-    if (error.code === 500)  console.error(error.stack || error);
-
-    if ( request.timedout )
-        console.error(
-            `请求超时: url=${request.originalUrl}, timeout=${error.timeout}, 请确认方法执行耗时很长，或没有正确的 response 回调。`
-        );
-
-    response.status( error.code );
-
-    //  若非开发环境，须隐藏 异常堆栈信息
-    error = Object.assign({ }, error);
-
-    if (app.get('env') !== 'development')  delete error.stack;
-
-    response.json( error );
-});
-
-// 端口一定要从环境变量 `LEANCLOUD_APP_PORT` 中获取。
-// LeanEngine 运行时会分配端口并赋值到该变量。
-const PORT = parseInt(process.env.LEANCLOUD_APP_PORT || process.env.PORT || 3000);
-
-app.listen(PORT,  function () {
-
-    console.log(`Node app is running on port: ${PORT}`);
-});
-
-
-// 注册全局未捕获异常处理器
-process.on('uncaughtException', function(error) {
-
-    console.error(`Caught exception: ${error.stack}`);
-
-}).on('unhandledRejection', function(reason, promise) {
-
-    console.error(
-        `Unhandled Rejection at: Promise ${promise}, reason: ${reason.stack}`
-    );
-});
+module.exports = app;

@@ -2073,7 +2073,7 @@ var WebApp = (function ($, Observer, View, HTMLView, ListView, TreeView, DOMkit,
                 ](
                     {index: this.length},
                     document.title = link.title,
-                    '#!'  +  self.btoa( this.getCID( link ) )
+                    this.pageRoot  +  '#!'  +  self.btoa( this.getCID( link ) )
                 );
 
                 this.emitRoute( this[ this.length++ ] = link );
@@ -2472,7 +2472,7 @@ return  (function ($, WebApp, InnerLink) {
                         data:     key
                     },
                     document.title,
-                    '#!' + self.btoa(
+                    this.pageRoot + '#!' + self.btoa(
                         $.extendURL(URL[0], key)  +  (
                             URL[1]  ?  ('&data=' + URL[1])  :  ''
                         )

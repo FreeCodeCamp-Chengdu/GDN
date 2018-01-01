@@ -2,8 +2,8 @@
 
 const QueryString = require('querystring'),
       router = require('express').Router(),
-      Request = require('request-promise-native'),
-      Utility = require('./FormEditor/utility');
+      fetch = require('node-fetch'),
+      Utility = require('./utility');
 
 
 
@@ -13,13 +13,14 @@ function queryEdu(type, parameter, response) {
 
     parameter.messtype = 'json';
 
-    Utility.send_result(
+    Utility.reply(
         response,
-        Request({
-            uri:     `http://data.api.gkcx.eol.cn/soudaxue/query${type}.html?${
-                QueryString.stringify( parameter )
-            }`,
-            json:    true
+        fetch(`http://data.api.gkcx.eol.cn/soudaxue/query${type}.html?${
+            QueryString.stringify( parameter )
+        }`).then(function (response) {
+
+            return response.json();
+
         }).then(function (data) {
 
             return {
@@ -30,6 +31,15 @@ function queryEdu(type, parameter, response) {
     );
 }
 
+/**
+ * @api {get} /university/specialty 查询专业
+ *
+ * @apiName    listSpecialty
+ * @apiVersion 1.0.0
+ * @apiGroup   University
+ *
+ * @apiUse List_Query
+ */
 router.get('/university/specialty',  function (request, response) {
 
     var data = request.query;
@@ -65,15 +75,15 @@ router.get(/\/university(\/(\d+))?/,  function (request, response) {
 
 router.all(/\/map\/(\S+)/,  function (request, response) {
 
-    Utility.send_result(
+    Utility.reply(
         response,
-        Request({
-            uri:     `https://restapi.amap.com/v3/${
-                request.originalUrl.replace(`${request.baseUrl}/map/`, '')
-            }&key=${
-                process.env.AMAP_KEY
-            }`,
-            json:    true
+        fetch(`https://restapi.amap.com/v3/${
+            request.originalUrl.replace(`${request.baseUrl}/map/`, '')
+        }&key=${
+            process.env.AMAP_KEY
+        }`).then(function (response) {
+
+            return response.json();
         })
     );
 });

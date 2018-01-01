@@ -1,0 +1,294 @@
+#introduce {
+    background:         url("image/BG.png")  no-repeat;
+    background-size:    100% 100%;
+}
+#detail {
+    background:    linear-gradient(to bottom, #000B19, #04101E);
+}
+.container > .row {
+    color:     rgba(255, 255, 255, 0.8);
+    padding:   2.5rem  1rem;
+}
+
+.banner1 .title::before{
+    content: '';
+    width: 40px;
+    height: 4px;
+    display: block;
+    margin-bottom: 10px;
+    margin-left: -40px;
+    background: #5583F6;
+}
+.banner1 {
+    margin-bottom: 5rem;
+}
+#introduce .Background-Image {
+    height:        25rem;
+    box-shadow:    0  2px  1.25rem  0  rgba(170, 170, 170, 0.5);
+}
+
+.btn{
+    background-image: linear-gradient(to right, rgb(39, 91, 243), rgb(87, 126, 222));
+}
+
+.white {
+    color:  white;
+}
+.blue {
+    color: #1B49AC;
+    font-size: 1.6rem;
+}
+
+.title{
+    margin-bottom: 2rem;
+}
+
+ul {
+    margin:     0;
+    padding:    0;
+}
+ul li {
+    list-style:     none;
+    padding:        0;
+    line-height:    2rem
+}
+
+.line-center::after,
+.line-left::after,
+.line-right::after {
+    content: '';
+    width: 36px;
+    height: 4px;
+    display: block;
+    background: #5583F6;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.line-left::after {
+    margin: 10px 0px 0px;
+}
+
+.line-right::after {
+    position: absolute;
+    right: 15px;
+}
+
+button.channel {
+    background: linear-gradient(to right, #085CFD, #4A80E4);
+}
+
+.card-group {
+    position: relative;
+    width: 100%;
+    /* height: 20rem; */
+    margin: 3rem 0;
+}
+
+.card-title {
+    border-style: solid;
+    border-color: #2557c8;
+    position: absolute;
+    background-color: #000000;
+    height: 10rem;
+    padding-top: 3.5rem;
+    z-index: 99;
+}
+
+.card-title.left {
+    top: -3rem;
+    left: 0rem;
+    text-align: right;
+}
+
+.card-title.right {
+    top: -3rem;
+    right: 0rem;
+    text-align: left;
+}
+
+.card-content {
+    border-style:    solid;
+    border-color:    #182536;
+    padding:         3rem  9%;
+}
+
+div.award-list {
+    text-align: center;
+    margin-top: 10rem;
+    margin-bottom: -5rem;
+}
+
+.award-line {
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.rule-list {
+    text-align:    left;
+    padding:       2.5rem  4rem;
+    background:    linear-gradient(to right, #275BF3, #577EDE);
+    margin-top:    2rem;
+}
+
+span.remarks small{
+    margin: 1rem 1rem ;
+}
+
+div.guest-list {
+    text-align: center;
+    position: relative;
+}
+
+
+div.guest-list .guest-title {
+    display: inline-block;
+}
+
+div.sponsor {
+    background: url("image/sponsor-bg.png");
+    font-size: 1.4rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 5%;
+    text-align: left;
+    height: 50rem;
+}
+div#guest-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.logo-list > li {
+	display:           inline-block;
+    vertical-align:    middle;
+    width:             12rem;
+    padding:           1rem;
+}
+.logo-list img {
+    max-height:    4rem;
+}
+
+/*  嘉宾 */
+.guest{
+    /* width: 30%; */
+    /* height: 0px; */
+    background: #021024;
+    text-align: left;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 5rem .1rem 0 .1rem;
+}
+
+.guest:first-child{
+    margin-left: 0px;
+}
+
+.guest .guest-avatar {
+    width:     6.25rem;
+    height:    6.25rem;
+    border:    2px  solid  white;
+}
+.guest .guest-title{
+    vertical-align: bottom;
+    display: inline-block;
+}
+.guest .guest-name{
+    font-size: 2.6rem;
+    font-weight: bold;
+}
+.guest .guest-role{
+    color: #2B57C9;
+    font-size: 1.6rem;
+}
+.guest .guest-identity{
+    color: #696F79;
+    font-size: 1.6rem;
+}
+.guest .guest-describe{
+    font-size: 1.4rem;
+    margin-top: 20px;
+}
+
+/* 合作单位 */
+.sponsor {
+    text-align: left;
+}
+.sponsor-name li{
+    line-height: 18px;
+    font-weight: bold;
+}
+
+.sponsor-lists{
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    margin-top: 1rem;
+}
+.sponsors{
+    padding:0 1%;
+    flex: 1;
+}
+.sponsors ul{
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .banner img {
+        width: 100%;
+        height: 200px;
+    }
+    .banner1 {
+        margin-bottom: 2rem;
+    }
+    .banner1 .title::before{
+        margin-left: 0;
+    }
+    .banner1 h1{
+        font-size: 2.5rem;
+    }
+    .banner1 h2{
+        font-size: 1.8rem;
+    }
+    .banner1 ul li {
+        font-size: 12px;
+    }
+
+    /*  */
+    .card-group .left{
+        background: rgba(0,0,0,0.1);
+        height: 5rem;
+        padding-top: 0.5rem;
+    }
+
+    .card-title{
+        height: 5rem;
+        padding-top: 0.5rem;
+    }
+    .card-content {
+        padding: 2rem 1rem 0;
+    }
+    .card-content ul li{
+        font-size: 1.4rem;
+        margin-top: 0.8rem;
+    }
+
+
+    /* 奖项 */
+    div.award-list{
+        margin-top: 1rem;
+    }
+
+    .sponsor {
+        /* background: none; */
+        height: auto!important;
+        padding-bottom: 40px!important;
+    }
+    .sponsors ul {
+        margin-top: 0;
+        margin-bottom: 2rem;
+    }
+}

@@ -3,11 +3,11 @@
 const URL_Utility = require('url'),
       router = require('express').Router(),
       LeanCloud = require('leanengine'),
-      Utility = require('./FormEditor/utility');
+      Utility = require('./utility');
 
 
 
-router.get('/OAuth',  function (request, response) {
+router.get('/user/OAuth',  function (request, response) {
 
     var user = request.currentUser, account;
 
@@ -26,7 +26,7 @@ router.get('/OAuth',  function (request, response) {
 });
 
 
-router.get('/signOut',  function (request, response) {
+router.get('/user/signOut',  function (request, response) {
 
     request.currentUser.logOut();
 
@@ -36,14 +36,14 @@ router.get('/signOut',  function (request, response) {
 });
 
 
-router.all('/profile',  function (request, response) {
+router.all('/user/profile',  function (request, response) {
 
     var user = request.currentUser, data = request.body, error;
 
     if ( user ) {
         switch ( request.method.toUpperCase() ) {
             case 'PUT':
-                return  Utility.send_result(
+                return  Utility.reply(
                     response,
                     user.save(
                         {
@@ -70,16 +70,42 @@ router.all('/profile',  function (request, response) {
             default:       {
                 error = new URIError('Method Not Allowed');
 
-                error.code = 405;
+                error.status = 405;
             }
         }
     } else {
         error = new ReferenceError('Unauthorized');
 
-        error.code = 401;
+        error.status = 401;
     }
 
     throw error;
+});
+
+
+/**
+ * @api {get} /user 全局查询用户
+ *
+ * @apiName    listUser
+ * @apiVersion 1.0.0
+ * @apiGroup   User
+ *
+ * @apiUse List_Query
+ *
+ * @apiSuccess {String} list.username  用户名
+ * @apiSuccess {Object} list.github    GitHub 用户详情
+ */
+router.get('/user',  function (request, response) {
+
+    Utility.reply(
+        response,
+        Utility.query.call(
+            request.currentUser,
+            request.query,
+            '_User',
+            ['username', 'email', 'mobilePhoneNumber']
+        )
+    );
 });
 
 
