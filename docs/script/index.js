@@ -35,9 +35,8 @@ require([
     }).ready(function () {
 
         var iWebApp = $('#PageBox').iWebApp(
-                $('base')[0].href = (self.location.hostname === 'localhost')  ?
-                    self.location.href.split( /\?|\#/ )[0]  :
-                    'https://git-dev.leanapp.cn/'
+                (self.location.hostname === 'localhost')  ?
+                    '' : 'https://git-dev.leanapp.cn/'
             );
 
     //  JSON 请求预处理
