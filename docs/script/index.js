@@ -34,11 +34,7 @@ require([
             );
     }).ready(function () {
 
-        var iWebApp = $('#PageBox').iWebApp(
-                $('base')[0].href = (self.location.hostname === 'localhost')  ?
-                    self.location.href.split( /\?|\#/ )[0]  :
-                    '//git-dev.leanapp.cn/'
-            );
+        var iWebApp = $('#PageBox').iWebApp( document.baseURI );
 
     //  JSON 请求预处理
 

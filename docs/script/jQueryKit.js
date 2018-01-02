@@ -680,21 +680,33 @@ var utility_ext_string = (function ($) {
          *
          * @memberof $
          *
-         * @param   {string}        string  - Raw Text
-         * @param   {string|RegExp} [split] - Separator to split as
-         *                                    `Array.prototype.split`
-         * @param   {number}        [max]   - Max number of returned parts
-         * @param   {string}        [join]  - String to join
-         *                                    (Default value is same as `split`)
-         * @returns {string[]}
+         * @param {string}        string  - Raw Text
+         * @param {string|RegExp} [split] - Separator to split as
+         *                                  `String.prototype.split`
+         * @param {number}        [max]   - Max number of returned parts
+         * @param {string}        [join]  - String to join
+         *                                  (Default value is same as `split`)
+         * @return {string[]}
+         *
+         * @example  // 原型方法等效
+         *
+         *     $.split('abc', '')    // ['a', 'b', 'c']
+         *
+         * @example  // PHP str_split() 等效
+         *
+         *     $.split('abc', '', 2)    // ['a', 'bc']
+         *
+         * @example  // 连接字符串
+         *
+         *     $.split("a  b\tc",  /\s+/,  2,  ' ')    // ['a', 'b c']
          */
         split:         function (string, split, max, join) {
 
             string = string.split( split );
 
-            if (max) {
+            if ( max ) {
                 string[max - 1] = string.slice(max - 1).join(
-                    (typeof join == 'string') ? join : split
+                    (typeof join === 'string')  ?  join  :  split
                 );
                 string.length = max;
             }
@@ -704,20 +716,35 @@ var utility_ext_string = (function ($) {
         /**
          * 连字符化字符串
          *
-         * @author   TechQuery
+         * @author TechQuery
          *
          * @memberof $
          *
-         * @param    {string} raw - Non Hyphen-Case String
+         * @param {string} raw - Non Hyphen-Case String
          *
-         * @returns  {string}
+         * @return {string}
+         *
+         * @example  // 符号间隔
+         *
+         *     $.hyphenCase('UPPER_CASE')    // 'upper-case'
+         *
+         * @example  // 驼峰法
+         *
+         *     $.hyphenCase('camelCase')    // 'camel-case'
+         *
+         * @example  // 混杂写法
+         *
+         *     $.hyphenCase('UPPER_CASEMix -camelCase')
+         *
+         *     // 'upper-case-mix-camel-case'
          */
         hyphenCase:    function (raw) {
 
-            return  raw.toLowerCase().replace(/(\S)[^a-z0-9]+(\S)/g,  function () {
-
-                return  arguments[1] + '-' + arguments[2];
-            });
+            return raw.replace(
+                /[^A-Za-z0-9]+/g, '-'
+            ).replace(
+                /([A-Za-z0-9])([A-Z][a-z])/g, '$1-$2'
+            ).toLowerCase();
         },
         byteLength:    function () {
 
@@ -788,18 +815,37 @@ var utility_ext_string = (function ($) {
 
 /* ---------- DOM Text Content ---------- */
 
-    Object.defineProperty(DOM_Proto, 'textContent', {
+    function mapTree(node, filter) {
+
+        var children = node.childNodes, list = [ ];
+
+        for (var i = 0, value;  children[i];  i++) {
+
+            if ((value = filter.call(node, children[i]))  !=  null)
+                list.push( value );
+
+            if ( children[i].childNodes[0] )
+                list.push.apply(list,  mapTree(children[i], filter));
+        }
+
+        return list;
+    }
+
+    Object.defineProperty(Node.prototype, 'textContent', {
         get:    function () {
 
-            return this.innerText;
-        },
-        set:    function (iText) {
+            return  mapTree(this,  function (node) {
 
-            switch ( this.tagName.toLowerCase() ) {
-                case 'style':     return  this.styleSheet.cssText = iText;
-                case 'script':    return  this.text = iText;
-            }
-            this.innerText = iText;
+                if (node.nodeType !== 1)  return  node.nodeValue || '';
+
+            }).join('');
+        },
+        set:    function (text) {
+
+            if (this.nodeName.toLowerCase() === 'style')
+                this.styleSheet.cssText = text;
+            else
+                this[(this.nodeType === 1) ? 'innerText' : 'nodeValue'] = text;
         }
     });
 
