@@ -1214,13 +1214,12 @@ var view_DOMkit = (function ($, RenderNode, InnerLink) {
 
             return rule;
         },
-        fixStyle:     function ($_Root, iDOM) {
+        fixStyle:     function ($_Root, iDOM, base) {
 
             if ( iDOM.classList.contains('iQuery_CSS-Rule') )  return iDOM;
 
             var rule = this.cssRule(
-                    iDOM.sheet,
-                    iDOM.sheet.href  &&  fixCSSURL.bind(null, iDOM.sheet.href)
+                    iDOM.sheet,  base && fixCSSURL.bind(null, base)
                 );
 
             iDOM = [ ];
@@ -1260,6 +1259,27 @@ var view_DOMkit = (function ($, RenderNode, InnerLink) {
 
             return iDOM;
         },
+        loadCSS:      function ($_View, linkDOM, base) {
+
+            var path = pathToRoot(base, linkDOM.getAttribute('href')),
+                _this_ = this,
+                $_Style = $('<style disabled />');
+
+            $.get( path ).then(function (CSS) {
+
+                $_Style[0].textContent = CSS;
+
+                $_Style.replaceWith( _this_.fixStyle($_View, $_Style[0], path) );
+
+            },  function () {
+
+                linkDOM.href = path;
+
+                $_Style.replaceWith( linkDOM );
+            });
+
+            return $_Style[0];
+        },
         fixScript:    function (iDOM) {
             var iAttr = { };
 
@@ -1281,8 +1301,7 @@ var view_DOMkit = (function ($, RenderNode, InnerLink) {
 
             switch ( this.tagName.toLowerCase() ) {
                 case 'a':         ;
-                case 'area':      ;
-                case 'link':      key = 'href';
+                case 'area':      key = 'href';
                 case 'form':      key = key || 'action';
                 case 'img':       ;
                 case 'iframe':    ;
@@ -1314,8 +1333,7 @@ var view_DOMkit = (function ($, RenderNode, InnerLink) {
             }
         },
         URL_DOM:      [
-            'a', 'area', 'link', 'form',
-            'img', 'iframe', 'audio', 'video', 'script',
+            'a', 'area', 'form', 'img', 'iframe', 'audio', 'video', 'script',
             '[style]', '[data-href]'
         ].join(', ')
     };
@@ -1446,18 +1464,12 @@ var view_HTMLView = (function ($, View, DOMkit, RenderNode) {
 
                 if ((node instanceof Node)  &&  (node !== $_View[0]))
                     switch ( type ) {
-                        case 'style':     return  DOMkit.fixStyle($_View, node);
-                        case 'link':      {
-
-                            node.onload = function () {
-
-                                $( this ).replaceWith(
-                                    DOMkit.fixStyle($_View, this)
-                                );
-                            };
-                            return;
-                        }
-                        case 'script':    return  DOMkit.fixScript( node );
+                        case 'style':
+                            return  DOMkit.fixStyle($_View, node);
+                        case 'link':
+                            return  DOMkit.loadCSS($_View, node, this.__base__);
+                        case 'script':
+                            return  DOMkit.fixScript( node );
                     }
 
                 return  this.parseNode(type, node);
@@ -1641,7 +1653,7 @@ var view_HTMLView = (function ($, View, DOMkit, RenderNode) {
 })(jquery, view_View, view_DOMkit, view_RenderNode);
 
 
-var view_ListView = (function ($, View, HTMLView, InnerLink) {
+var view_ListView = (function ($, View, InnerLink) {
 
     /**
      * 迭代视图类（对应 JSON 数组）
@@ -1831,7 +1843,7 @@ var view_ListView = (function ($, View, HTMLView, InnerLink) {
 
     return ListView;
 
-})(jquery, view_View, view_HTMLView, InnerLink);
+})(jquery, view_View, InnerLink);
 
 
 var view_TreeView = (function ($, ListView) {
@@ -1969,7 +1981,10 @@ var WebApp = (function ($, Observer, View, HTMLView, ListView, TreeView, DOMkit,
         splice:           Array.prototype.splice,
         getCID:           function () {
 
-            return  (arguments[0] + '').replace(this.pageRoot, '').split('#')[0];
+            return  (arguments[0] + '')
+                .replace(this.pageRoot, '')
+                .replace($.filePath( document.baseURI ),  '')
+                .split('#')[0];
         },
         /**
          * 明文显示当前 SPA 内页的路由 URI
@@ -2329,7 +2344,7 @@ var WebApp = (function ($, Observer, View, HTMLView, ListView, TreeView, DOMkit,
  *
  * @module    {function} WebApp
  *
- * @version   4.0 (2018-01-01) stable
+ * @version   4.0 (2018-01-02) stable
  *
  * @requires  jquery
  * @see       {@link http://jquery.com/ jQuery}

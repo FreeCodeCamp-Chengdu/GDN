@@ -51,6 +51,8 @@ Web 服务 URL —— http://localhost:3000/
 
    - [GDN API](https://git-dev.tk/RESTful-API/)
 
+ - 调试工具（推荐）：[NIM](https://chrome.google.com/webstore/detail/nodejs-v8-inspector-manag/gnhhdgbaldcilmgcpfddgdbkhjohddkj)
+
 
 ### （三）编码规范
 

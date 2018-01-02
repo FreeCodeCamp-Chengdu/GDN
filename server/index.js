@@ -16,7 +16,8 @@ app.use(CORS({
     origin:                  (process.env.WEB_DOMAIN || '').split('|').map(
         function (domain) {
 
-            return `https://${domain}`;
+            return  domain.match( /^\w+:\/\// )  ?
+                domain  :  `https://${domain}`;
         }
     ).concat(
         'http://localhost:3000',
