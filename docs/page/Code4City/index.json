@@ -1,84 +1,4 @@
 {
-    "logos": [
-        {
-            "title": "CDkfx",
-            "url": "cdkfx.png"
-        },
-        {
-            "title": "cdht",
-            "url": "cdht.png"
-        },
-        {
-            "title": "FCC",
-            "url": "FCC.png"
-        },
-        {
-            "title": "xinyaoxing",
-            "url": "xinyaoxing.png"
-        },
-        {
-            "title": "HCXY",
-            "url": "hcxy.png"
-        },
-        {
-            "title": "JRsquare",
-            "url": "JRsquare.png"
-        },
-        {
-            "title": "Github",
-            "url": "github.png"
-        },
-        {
-            "title": "BBD",
-            "url": "BBD.png"
-        },
-        {
-            "title": "juejin",
-            "url": "juejin.png"
-        },
-        {
-            "title": "TEDx",
-            "url": "tedx-logo.png"
-        },
-        {
-            "title": "Monstarlab",
-            "url": "Monstarlab.png"
-        },
-        {
-            "title": "Microsoft",
-            "url": "Microsoft-logo_rgb_wht.png"
-        },
-        {
-            "title": "DevEco",
-            "url": "DevEco.png"
-        },
-        {
-            "title": "Eleme",
-            "url": "eleme.png"
-        },
-
-        {
-            "title": "GDG",
-            "url": "GDG.png"
-        },
-        {
-            "title": "ITdks",
-            "url": "ITdks.png"
-        },
-        {
-            "title": "OSCHINA",
-            "url": "oschina.png"
-        },
-        {
-            "title": "segmentfault",
-            "url": "segmentfault.png"
-        },
-        {
-            "title": "shiyanlou",
-            "url": "shiyanlou.png"
-        }
-
-    ],
     "vips": [
         {
             "avatar": "hushenquan.jpg",
@@ -133,7 +53,7 @@
             "avatar": "zhangwei.png",
             "name": "张伟",
             "role": "特邀嘉宾",
-            "identity": "BBD基础架构部经理",
+            "identity": "BBD 基础架构部经理",
             "describe": "曾就职于Oracle，在Oracle China Offshore Center部门担任Middleware Consultant。曾就职于Alipay，在金融核心技术部担任研发工程师，参与过双11核心交易系统的开发工作。现负责BBD中间件基础设施的建设，对企业级中间件、区块链有浓厚的兴趣。"
         },
         {
@@ -155,43 +75,99 @@
         {
             "title": "主办单位",
             "list": [
-                { "title": "高新区创新创业服务中心"},
-                { "title": "成都科技企业孵化器协会"},
-                { "title": "FCC成都社区"}
+                {
+                    "title": "高新区创新创业服务中心",
+                    "imageURL": "cdht.png"
+                },
+                {
+                    "title": "成都科技企业孵化器协会",
+                    "imageURL": "cdkfx.png"
+                },
+                {
+                    "title": "FCC成都社区",
+                    "imageURL": "FCC.png"
+                }
             ]
         },
         {
             "title": "冠名单位",
             "list": [
-                {"title": "成都新耀行房产营销策划有限公司"}
+                {
+                    "title": "成都新耀行房产营销策划有限公司",
+                    "imageURL": "XinYaoHang.png"
+                }
             ]
         },
         {
             "title": "承办单位",
             "list": [
-                { "title": "合创新业"},
-                { "title": "菁蓉国际广场"}
+                {
+                    "title": "合创新业",
+                    "imageURL": "hcxy.png"
+                },
+                {
+                    "title": "菁蓉国际广场",
+                    "imageURL": "JRsquare.png"
+                }
             ]
         },
         {
             "title": "平台提供",
             "list": [
-               { "title": "梦思特科技(成都)"}
+               {
+                   "title": "梦思特科技(成都)",
+                   "imageURL": "Monstarlab.png"
+               }
             ]
         },
         {
             "title": "合作伙伴",
             "list": [
-                {"title": "Github"},
-                {"title": "微软"},
-                {"title": "BBD"},
-                {"title": "掘金"},
-                {"title": "GDG"},
-                {"title": "TEDxChengDu"},
-                {"title": "饿了么"},
-                {"title": "猿生态"},
+                {
+                    "title": "Github",
+                    "imageURL": "github.png"
+                },
+                {
+                    "title": "微软",
+                    "imageURL": "Microsoft-logo_rgb_wht.png"
+                },
+                {
+                    "title": "BBD",
+                    "imageURL": "BBD.png"
+                },
+                {
+                    "title": "掘金",
+                    "imageURL": "juejin.png"
+                },
+                {
+                    "title": "开源中国",
+                    "imageURL": "oschina.png"
+                },
+                {
+                    "title": "SegmentFault",
+                    "imageURL": "segmentfault.png"
+                },
+                {
+                    "title": "GDG",
+                    "imageURL": "GDG.png"
+                },
+                {
+                    "title": "TEDxChengDu",
+                    "imageURL": "tedx-logo.png"
+                },
+                {
+                    "title": "饿了么",
+                    "imageURL": "eleme.png"
+                },
+                {
+                    "title": "猿生态",
+                    "imageURL": "DevEco.png"
+                },
                 {"title": "个推"},
-                {"title": "实验楼"}
+                {
+                    "title": "实验楼",
+                    "imageURL": "shiyanlou.png"
+                }
             ]
         },
         {
@@ -203,7 +179,10 @@
                 {"title": "新浪"},
                 {"title": "四川日报"},
                 {"title": "四川财富广播"},
-                {"title": "IT大咖说"}
+                {
+                    "title": "IT大咖说",
+                    "imageURL": "ITdks.png"
+                }
             ]
         }
     ]

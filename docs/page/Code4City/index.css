@@ -5,42 +5,38 @@
 #detail {
     background:    linear-gradient(to bottom, #000B19, #04101E);
 }
-.container > .row {
+.container > * {
     color:     rgba(255, 255, 255, 0.8);
     padding:   2.5rem  1rem;
 }
 
-.banner1 .title::before{
-    content: '';
-    width: 40px;
-    height: 4px;
-    display: block;
-    margin-bottom: 10px;
-    margin-left: -40px;
-    background: #5583F6;
+.title {
+    margin-bottom:    1.8rem;
 }
-.banner1 {
-    margin-bottom: 5rem;
+
+#Info .title:before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 3px;
+    background: #5583F6;
+    margin-bottom: 1.8rem;
+    margin-left: -3rem;
+    padding-left: 3rem;
+}
+#Info .btn {
+    margin:              1.8rem  0;
+    background-image:    linear-gradient(
+        to right,  rgb(39, 91, 243),  rgb(87, 126, 222)
+    );
 }
 #introduce .Background-Image {
     height:        25rem;
     box-shadow:    0  2px  1.25rem  0  rgba(170, 170, 170, 0.5);
 }
 
-.btn{
-    background-image: linear-gradient(to right, rgb(39, 91, 243), rgb(87, 126, 222));
-}
-
-.white {
+h1, h2, h3, h4, h5 {
     color:  white;
-}
-.blue {
-    color: #1B49AC;
-    font-size: 1.6rem;
-}
-
-.title{
-    margin-bottom: 2rem;
 }
 
 ul {
@@ -50,23 +46,23 @@ ul {
 ul li {
     list-style:     none;
     padding:        0;
-    line-height:    2rem
+    line-height:    2.5rem
 }
 
 .line-center::after,
 .line-left::after,
 .line-right::after {
     content: '';
-    width: 36px;
-    height: 4px;
+    width: 2rem;
+    height: 2px;
     display: block;
     background: #5583F6;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 2rem;
 }
 
 .line-left::after {
-    margin: 10px 0px 0px;
+    margin: 2rem 0px 0px;
 }
 
 .line-right::after {
@@ -74,86 +70,71 @@ ul li {
     right: 15px;
 }
 
-button.channel {
-    background: linear-gradient(to right, #085CFD, #4A80E4);
+#Purpose {
+    margin-top: 11rem;
 }
-
 .card-group {
     position: relative;
     width: 100%;
     /* height: 20rem; */
     margin: 3rem 0;
 }
-
 .card-title {
     border-style: solid;
+    border-width: 2px;
     border-color: #2557c8;
     position: absolute;
     background-color: #000000;
-    height: 10rem;
+    height: 13rem;
     padding-top: 3.5rem;
     z-index: 99;
 }
-
 .card-title.left {
     top: -3rem;
     left: 0rem;
     text-align: right;
 }
-
 .card-title.right {
     top: -3rem;
     right: 0rem;
     text-align: left;
 }
-
 .card-content {
     border-style:    solid;
     border-color:    #182536;
     padding:         3rem  9%;
+    min-height:      13rem;
+    line-height:     2.5rem;
 }
 
 div.award-list {
     text-align: center;
-    margin-top: 10rem;
+    margin-top: 13rem;
     margin-bottom: -5rem;
 }
-
 .award-line {
     margin: 2rem 0;
     padding: 0;
 }
 
+.rule-panel {
+    margin-top:    7rem;
+    text-align:    center;
+}
 .rule-list {
-    text-align:    left;
-    padding:       2.5rem  4rem;
-    background:    linear-gradient(to right, #275BF3, #577EDE);
-    margin-top:    2rem;
+    text-align:       left;
+    padding:          7rem  4rem;
+    background:       linear-gradient(to right, #275BF3, #577EDE);
+    width:            80%;
+    margin:           2rem  auto;
+    line-height:      3rem;
+    border-radius:    4px;
 }
 
 span.remarks small{
     margin: 1rem 1rem ;
 }
 
-div.guest-list {
-    text-align: center;
-    position: relative;
-}
-
-
-div.guest-list .guest-title {
-    display: inline-block;
-}
-
-div.sponsor {
-    background: url("image/sponsor-bg.png");
-    font-size: 1.4rem;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    padding: 5%;
-    text-align: left;
-    height: 50rem;
-}
 div#guest-list{
     display: flex;
     flex-direction: row;
@@ -161,7 +142,6 @@ div#guest-list{
     justify-content: flex-start;
     align-content: flex-start;
 }
-
 .logo-list > li {
 	display:           inline-block;
     vertical-align:    middle;
@@ -181,6 +161,8 @@ div#guest-list{
     border-radius: 4px;
     padding: 15px;
     margin: 5rem .1rem 0 .1rem;
+    min-height: 15rem;
+    font-size: 1rem;
 }
 
 .guest:first-child{
@@ -188,76 +170,79 @@ div#guest-list{
 }
 
 .guest .guest-avatar {
-    width:     6.25rem;
-    height:    6.25rem;
+    width:     8rem;
+    height:    8rem;
     border:    2px  solid  white;
+    display: inline-block;
+    margin-top: -3rem;
 }
 .guest .guest-title{
     vertical-align: bottom;
     display: inline-block;
+    margin-left: 0.5rem;
+    line-height: 2rem;
 }
 .guest .guest-name{
-    font-size: 2.6rem;
-    font-weight: bold;
+    font-size: 1.6rem;
 }
 .guest .guest-role{
     color: #2B57C9;
-    font-size: 1.6rem;
 }
 .guest .guest-identity{
     color: #696F79;
-    font-size: 1.6rem;
 }
 .guest .guest-describe{
-    font-size: 1.4rem;
     margin-top: 20px;
+    line-height: 1.6rem;
 }
 
 /* 合作单位 */
-.sponsor {
-    text-align: left;
+#Sponsor {
+    background:         url("image/sponsor-bg.png")  no-repeat  center;
+    background-size:    100%;
+    height:             50rem;
+    padding:            5%;
+    font-size:          1.2rem;
+    text-align:         left;
 }
-.sponsor-name li{
-    line-height: 18px;
-    font-weight: bold;
+#Sponsor > .Flow-Box {
+    margin-top:    1rem;
 }
-
-.sponsor-lists{
-    display: flex;
-    justify-content: flex-start;
-    align-content: center;
-    margin-top: 1rem;
+#Sponsor > .Flow-Box > * {
+    vertical-align:    top;
+    padding:           0  1%;
 }
-.sponsors{
-    padding:0 1%;
-    flex: 1;
+#Sponsor h5 {
+    color:        #1B49AC;
+    font-size:    1.6rem;
 }
-.sponsors ul{
-    margin-top: 2rem;
+#Sponsor ul {
+    margin-top:    2rem;
+}
+#Sponsor li {
+    color:          white;
+    line-height:    2.5rem;
+    font-weight:    bold;
 }
 
 @media (max-width: 768px) {
-    .banner img {
-        width: 100%;
-        height: 200px;
-    }
-    .banner1 {
+    #Info {
         margin-bottom: 2rem;
+        padding-left: 0px;
     }
-    .banner1 .title::before{
+    #Info .title::before{
         margin-left: 0;
     }
-    .banner1 h1{
+    #Info h1{
         font-size: 2.5rem;
     }
-    .banner1 h2{
+    #Info h2{
         font-size: 1.8rem;
     }
-    .banner1 ul li {
+    #Info ul li {
         font-size: 12px;
     }
 
-    /*  */
     .card-group .left{
         background: rgba(0,0,0,0.1);
         height: 5rem;
@@ -269,11 +254,39 @@ div#guest-list{
         padding-top: 0.5rem;
     }
     .card-content {
-        padding: 2rem 1rem 0;
+        padding: 2rem 1rem 1rem;
     }
     .card-content ul li{
         font-size: 1.4rem;
         margin-top: 0.8rem;
+    }
+
+    #Purpose {
+        margin-top: 6rem;
+    }
+
+    .guest {
+        padding:    15px 0px;
+        min-height: 1rem;
+    }
+
+    .guest .guest-avatar {
+        width:     5rem;
+        height:    5rem;
+        border:    2px  solid  white;
+        display: inline-block;
+        margin-top: -3rem;
+    }
+
+    .line-center::after,
+    .line-left::after,
+    .line-right::after {
+        margin-top: 0.8rem;
+    }
+
+    ul li {
+        line-height: 1.8rem;
+        font-size:   12px;
     }
 
 
@@ -281,14 +294,32 @@ div#guest-list{
     div.award-list{
         margin-top: 1rem;
     }
+    div.award-list .title{
+        font-size: 18px;
+    }
+    .award-list h4{
+        font-size: 1.4rem;
+    }
+    .award-list p{
+        font-size: 1rem;
+    }
 
-    .sponsor {
-        /* background: none; */
+    #Sponsor {
         height: auto!important;
         padding-bottom: 40px!important;
     }
-    .sponsors ul {
+    #Sponsor > .Flow-Box {
+        text-align:    center;
+    }
+    #Sponsor ul {
         margin-top: 0;
         margin-bottom: 2rem;
+    }
+
+    .rule-list {
+        line-height: 2rem;
+        font-size:   12px;
+        padding:  4rem 2rem;
+        min-height:  1rem;
     }
 }

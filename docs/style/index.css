@@ -38,6 +38,17 @@ select:disabled {
     display:           table-cell;
     vertical-align:    middle;
 }
+.Flow-Box {
+    padding:      0;
+    font-size:    0  !important;
+}
+.Flow-Box > * {
+    display:           inline-block;
+    vertical-align:    middle;
+    font-size:         16px;
+    font-size:         1rem;
+    float:             none;
+}
 .Background-Image {
     min-width:              3em;
     min-height:             3em;
