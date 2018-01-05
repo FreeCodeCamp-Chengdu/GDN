@@ -198,17 +198,26 @@ div#guest-list{
 
 /* 合作单位 */
 #Sponsor {
-    background:         url("image/sponsor-bg.png")  no-repeat  center;
-    background-size:    100%;
-    height:             50rem;
-    padding:            5%;
-    font-size:          1.2rem;
-    text-align:         left;
+    position:    relative;
+    left:        0.5rem;
+    top:         0.5rem;
+    border:      1px  solid  rgb(27, 67, 154);
+    padding:     0  !important;
 }
-#Sponsor > .Flow-Box {
+#Sponsor > .Background-Image {
+    background-image:    url("image/sponsor-bg.png");
+    border:              1px  solid  rgb(20, 30, 43);
+    padding:             5%;
+    font-size:           1.2rem;
+    text-align:          left;
+    position:            relative;
+    left:                -1rem;
+    top:                 -1rem;
+}
+#Sponsor .Flow-Box {
     margin-top:    1rem;
 }
-#Sponsor > .Flow-Box > * {
+#Sponsor .Flow-Box > * {
     vertical-align:    top;
     padding:           0  1%;
 }
@@ -305,10 +314,9 @@ div#guest-list{
     }
 
     #Sponsor {
-        height: auto!important;
-        padding-bottom: 40px!important;
+        margin-bottom:    3rem;
     }
-    #Sponsor > .Flow-Box {
+    #Sponsor .Flow-Box {
         text-align:    center;
     }
     #Sponsor ul {

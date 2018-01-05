@@ -33,7 +33,7 @@
 
             data.reload = function (event) {
 
-                iWebApp.load( event.target );
+                if ( event.target.children[0] )  iWebApp.load( event.target );
             };
         });
     });
@@ -43,7 +43,7 @@
     <div class="form-group">
         分支
         <select class="form-control" name="branch"
-                data-href="?data=repos/${view.repository}/branches">
+                data-href="?data=github/repos/${view.repository}/branches">
 
             <option selected="${view.name === scope.default_branch}">
                 <!--${view.name}-->
@@ -53,7 +53,7 @@
 </form>
 
 <ul class="media-list"
-    data-href="?data=repos/${view.repository}/commits?sha=${view.branch}"
+    data-href="?data=github/repos/${view.repository}/commits?sha=${view.branch}"
 
     ondata="${view.fixData}" onready="${view.setNext}" onupdate="${view.reload}">
 

@@ -9,7 +9,7 @@ require([
 
     //  AJAX 异常处理
 
-        var message = XHR.responseText;
+        var message = XHR.responseText || '未知错误';
 
         switch ( message[0] ) {
             case '{':    message = JSON.parse( message ).message;    break;

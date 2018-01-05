@@ -56,6 +56,9 @@ select:disabled {
     background-position:    center;
     background-size:        cover;
 }
+.invalid {
+    border-color:    red;
+}
 
 
 .Card {
@@ -102,6 +105,9 @@ select:disabled {
     form.container {
         width:    750px;
     }
+}
+#PageBox > .container {
+    padding:    1rem;
 }
 body > footer {
     background:    black;

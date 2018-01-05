@@ -1,11 +1,17 @@
 define(['jquery', 'EasyWebApp'],  function ($, EWA) {
 
-    function set_State(view, next) {
+    function set_State(view, link) {
+
+        var next = (link.next || '').uri.replace(
+                'https://api.github.com/', 'github/'
+            );
 
         view.$_View.mediaReady().then(function () {
 
             view.ready = next ? 0 : 2;
         });
+
+        return next;
     }
 
     return  function ($_List, onInit) {
@@ -28,11 +34,8 @@ define(['jquery', 'EasyWebApp'],  function ($, EWA) {
             data = $.extend(data, {
                 setNext:     function (event) {
 
-                    if (! event.src)  return;
-
-                    var link = event.header.link || '';
-
-                    set_State(this,  next = (link.next || '').uri);
+                    if ( event.src )
+                        next = set_State(this,  event.header.link || '');
                 },
                 ready:       1,
                 loadMore:    function () {
@@ -46,12 +49,8 @@ define(['jquery', 'EasyWebApp'],  function ($, EWA) {
 
                         list_view.render(list, list_view.length);
 
-                        set_State(
-                            VM,
-                            next = (
-                                $.parseHeader( XHR.getAllResponseHeaders() )
-                                    .link.next  ||  ''
-                            ).uri
+                        next = set_State(
+                            VM,  $.parseHeader( XHR.getAllResponseHeaders() ).link
                         );
                     });
                 }

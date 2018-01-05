@@ -810,12 +810,13 @@ var view_View = (function ($, Observer, DataScope, RenderNode) {
                 $.Class.call(this, View, ['render']),  $_View,  true
             );
 
+        _This_.setPrivate('base',  base || View.baseOf( _This_.$_View[0] ));
+
         return  (_This_ !== this)  ?
             _This_ :
             this.setPrivate({
                 id:          '',
                 name:        this.$_View[0].dataset.name,
-                base:        base  ||  View.baseOf( this.$_View[0] ),
                 /**
                  * 视图数据作用域
                  *
@@ -1281,6 +1282,7 @@ var view_DOMkit = (function ($, RenderNode, InnerLink) {
             return $_Style[0];
         },
         fixScript:    function (iDOM) {
+
             var iAttr = { };
 
             $.each(iDOM.attributes,  function () {
@@ -1288,9 +1290,7 @@ var view_DOMkit = (function ($, RenderNode, InnerLink) {
                 iAttr[ this.nodeName ] = this.nodeValue;
             });
 
-            iDOM = $('<script />', iAttr).prop('text', iDOM.text)[0];
-
-            return iDOM;
+            return  $('<script />', iAttr).prop('text', iDOM.text)[0];
         },
         fixURL:       function (base) {
 
@@ -1317,18 +1317,16 @@ var view_DOMkit = (function ($, RenderNode, InnerLink) {
                         ('target' in this)  &&
                         (this.target !== '_self')  &&
                         $.isXDomain( URI )
-                    ) {
-                        this.target = '_blank';
+                    )
+                        return  this.target = '_blank';
 
-                    } else if (URI = pathToRoot(base, URI)) {
-
+                    if (URI = pathToRoot(base, URI))
                         this.setAttribute(key, URI);
 
-                        if ($_This.is(
-                            InnerLink.HTML_Link + ', ' + InnerLink.Self_Link
-                        ))
-                            new InnerLink( this );
-                    }
+                    if ($_This.is(
+                        InnerLink.HTML_Link + ', ' + InnerLink.Self_Link
+                    ))
+                        new InnerLink( this );
                 }
             }
         },
@@ -1512,26 +1510,30 @@ var view_HTMLView = (function ($, View, DOMkit, RenderNode) {
         },
         parseHTML:     function (template) {
 
-        //  Compatible with <template />
+            var fresh;
+
+            if (template = (template || '').trim()) {
+
+                if ( this.$_View[0].innerHTML.trim() )
+                    this.$_Slot = this.$_View.contents().detach();
+
+                if (fresh  =  (! this.$_View[0].innerHTML.trim()))
+                    this.$_View[0].innerHTML = template;
+            }
 
             this.$_View.children('template').replaceWith(function () {
 
                 return  $( this ).contents();
             });
 
-        //  Literal Relative URL & <slot />
+            if ( fresh ) {
 
-            if (template = (template || '').trim()) {
+                this.fixLink();
 
-                if ( this.$_View[0].innerHTML.trim() )
-                    this.$_Slot = this.$_View.contents().remove();
-
-                this.$_View[0].innerHTML = template;
+                this.parseSlot();
             }
 
-            this.fixLink();
-
-            this.parseSlot();
+            return this;
         },
         /**
          * HTML 模板解析
@@ -1546,9 +1548,7 @@ var view_HTMLView = (function ($, View, DOMkit, RenderNode) {
          */
         parse:         function (template) {
 
-            if (! this.__parse__)  this.parseHTML( template );
-
-            return this.parseVM();
+            return  this.parseHTML( template ).parseVM();
         },
         nodeOf:        function (data, exclude, forEach) {
 
@@ -2344,7 +2344,7 @@ var WebApp = (function ($, Observer, View, HTMLView, ListView, TreeView, DOMkit,
  *
  * @module    {function} WebApp
  *
- * @version   4.0 (2018-01-02) stable
+ * @version   4.0 (2018-01-05) stable
  *
  * @requires  jquery
  * @see       {@link http://jquery.com/ jQuery}

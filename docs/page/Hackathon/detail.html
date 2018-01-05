@@ -132,7 +132,8 @@
     </section>
 </div>
 
-<form method="post" action="?data=hackathon/${view.id}/team">
+<form method="post" action="?data=hackathon/${view.id}/team"
+      onsubmit="${view.submit}">
 
     <div data-href="../../component/Dialog.html" data-id="Team">
 
@@ -147,11 +148,8 @@
                    name="description" required placeholder="简介" />
         </div>
 
-        <span slot="button">
-            <button type="submit" class="btn btn-primary"
-                    onclick="${scope.submit}">
-                创建
-            </button>
-        </span>
+        <button type="submit" class="btn btn-primary" slot="button">
+            创建
+        </button>
     </div>
 </form>

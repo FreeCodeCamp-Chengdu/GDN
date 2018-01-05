@@ -11,7 +11,7 @@
 
 <form class="form-horizontal container"
       method="post" action="?data=hackathon/" enctype="application/json"
-      ondata="${view.goBack}">
+      onsubmit="${view.submit}" ondata="${view.goBack}">
 
     <h3>编辑黑客松</h3>
 
@@ -135,8 +135,7 @@
     <input type="hidden" name="award" />
 
     <div class="form-group text-center">
-        <input type="submit" class="btn btn-primary btn-lg"
-               onclick="${view.submit}">
+        <input type="submit" class="btn btn-primary btn-lg">
         <input type="reset" class="btn btn-danger btn-lg">
     </div>
 </form>
