@@ -148,6 +148,10 @@
                     "imageURL": "segmentfault.png"
                 },
                 {
+                    "title": "ThoughtWorks",
+                    "imageURL": "ThoughtWorks.png"
+                },
+                {
                     "title": "GDG",
                     "imageURL": "GDG.png"
                 },
@@ -163,7 +167,14 @@
                     "title": "猿生态",
                     "imageURL": "DevEco.png"
                 },
-                {"title": "个推"},
+                {
+                    "title": "个推",
+                    "imageURL": "getui.png"
+                },
+                {
+                    "title": "麦客",
+                    "imageURL": "mikecrm"
+                },
                 {
                     "title": "实验楼",
                     "imageURL": "shiyanlou.png"
