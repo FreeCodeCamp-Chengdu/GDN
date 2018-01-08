@@ -232,6 +232,7 @@ div#guest-list{
     color:          white;
     line-height:    2.5rem;
     font-weight:    bold;
+    font-size:      1.1rem;
 }
 
 @media (max-width: 768px) {
