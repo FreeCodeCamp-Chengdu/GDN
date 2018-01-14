@@ -190,6 +190,10 @@
                 {
                     "title": "锦泰地产",
                     "imageURL": "jintai.png"
+                },
+                {
+                    "title": "LiveVideoStack",
+                    "imageURL":"lvs.png"
                 }
             ]
         },
@@ -198,31 +202,31 @@
             "list": [
                 {
                     "title": "四川省电视台",
-                    "imageURL": "scdst.jpg"
+                    "imageURL": "sctv.png"
                 },
                 {
                     "title": "成都电视台",
-                    "imageURL": "cddst.jpg"
+                    "imageURL": "cdtv.png"
                 },
                 {
                     "title": "成都高新区电视台",
-                    "imageURL": "gxdst.jpg"
+                    "imageURL": "cdhttv.png"
                 },
                 {
                     "title": "新浪四川",
-                    "imageURL": "xlsc.jpg"
+                    "imageURL": "sinasc.png"
                 },
                 {
                     "title": "四川日报",
-                    "imageURL": "scrb.jpg"
+                    "imageURL": "scdaily.png"
                 },
                 {
                     "title": "四川财富广播",
-                    "imageURL": "fm940.jpg"
+                    "imageURL": "fm940.png"
                 },
                 {
                     "title": "科创通",
-                    "imageURL": "kct.jpg"
+                    "imageURL": "kct.png"
                 },
                 {
                     "title": "IT大咖说",
