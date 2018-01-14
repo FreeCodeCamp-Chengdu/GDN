@@ -182,6 +182,14 @@
                 {
                     "title": "实验楼",
                     "imageURL": "shiyanlou.png"
+                },
+                {
+                    "title": "菲斯特地产",
+                    "imageURL": "first.png"
+                },
+                {
+                    "title": "锦泰地产",
+                    "imageURL": "jintai.png"
                 }
             ]
         },
