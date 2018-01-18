@@ -194,6 +194,10 @@
                 {
                     "title": "LiveVideoStack",
                     "imageURL":"lvs.png"
+                },
+                {
+                    "title": "yunpian",
+                    "imageURL":"yunpian.png"
                 }
             ]
         },
